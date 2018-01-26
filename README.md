@@ -1,1 +1,3 @@
-# davidzhang12138.github.io
+# README
+
+david的hexo 博客
