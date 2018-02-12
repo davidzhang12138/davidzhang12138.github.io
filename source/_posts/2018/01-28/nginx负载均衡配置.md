@@ -4,6 +4,9 @@ date: 2018-01-28 14:01:20
 tags: [NGINX,转载]
 categories: [NGINX]
 ---
+
+> 注明：本文转自[nMask's Blog][1]。
+
 　　nginx功能强大且常用作反向代理或者负载均衡，当我们部署了一个web系统之后，面对日益增多的访问流量，采用nginx做负载均衡是一个实惠的方案，本文用来记录nginx实现负载均衡的一些操作。
 ### 实验环境
 　　为了能够更符合真实环境，我在本机host上绑定了一个域名phantomjs.me，其ip地址为192.168.1.2，是一台安装了nginx的linux服务器，用来模拟负载均衡服务器；另外同一内网中还有3台web服务器，其ip分别是192.168.1.3，192.168.1.4，192.168.1.5。
@@ -159,3 +162,5 @@ location /update/{#将本地update目录代理到baidu.com/update目录下，即
 其实际获取的是baidu的update目录资源。
 
 关于nginx负载均衡更详细的内容，可以访问：http://www.jusene.me/2017/05/24/nginx-proxy/
+
+[1]: https://thief.one/2017/08/22/1/
