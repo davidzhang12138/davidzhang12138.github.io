@@ -6,22 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://ygnotes.com">
-  <title>PHP json_encode 空白问题 | David的日常</title>
+  <title>在 Laravel 项目中创建属于你自己的辅助方法（转载） | David的日常</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="昨天在修改基于shopsn的项目的源码时遇到个GAY问题最后返回数据时 整个页面空白页 但是又不报错经过排查 定位到是json_encode的问题">
-<meta name="keywords" content="PHP,JSON">
+  <meta name="description" content="注明：本文转自Laravel-China、jinwei。  这是一篇社区协同翻译的文章，已完成翻译，更多信息请点击 协同翻译介绍。">
+<meta name="keywords" content="PHP,转载,Laravel">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PHP json_encode 空白问题">
-<meta property="og:url" content="http://ygnotes.com/2018/01/25/PHP-json-encode-空白问题/index.html">
+<meta property="og:title" content="在 Laravel 项目中创建属于你自己的辅助方法（转载）">
+<meta property="og:url" content="http://ygnotes.com/2018/02/12/在-Laravel-项目中创建属于你自己的辅助方法/index.html">
 <meta property="og:site_name" content="David的日常">
-<meta property="og:description" content="昨天在修改基于shopsn的项目的源码时遇到个GAY问题最后返回数据时 整个页面空白页 但是又不报错经过排查 定位到是json_encode的问题">
+<meta property="og:description" content="注明：本文转自Laravel-China、jinwei。  这是一篇社区协同翻译的文章，已完成翻译，更多信息请点击 协同翻译介绍。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://ygnotes.com/img/18-1-25/json_last_error.png">
-<meta property="og:updated_time" content="2018-01-26T02:12:49.816Z">
+<meta property="og:image" content="https://dn-phphub.qbox.me/uploads/images/201801/29/1/UJ2FXDsehS.png">
+<meta property="og:updated_time" content="2018-02-12T06:26:33.042Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PHP json_encode 空白问题">
-<meta name="twitter:description" content="昨天在修改基于shopsn的项目的源码时遇到个GAY问题最后返回数据时 整个页面空白页 但是又不报错经过排查 定位到是json_encode的问题">
-<meta name="twitter:image" content="http://ygnotes.com/img/18-1-25/json_last_error.png">
+<meta name="twitter:title" content="在 Laravel 项目中创建属于你自己的辅助方法（转载）">
+<meta name="twitter:description" content="注明：本文转自Laravel-China、jinwei。  这是一篇社区协同翻译的文章，已完成翻译，更多信息请点击 协同翻译介绍。">
+<meta name="twitter:image" content="https://dn-phphub.qbox.me/uploads/images/201801/29/1/UJ2FXDsehS.png">
   
     <link rel="alternative" href="/atom.xml" title="David的日常" type="application/atom+xml">
   
@@ -157,28 +157,59 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-PHP-json-encode-空白问题" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-在-Laravel-项目中创建属于你自己的辅助方法" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      PHP json_encode 空白问题
+      在 Laravel 项目中创建属于你自己的辅助方法（转载）
     </h1>
   
 
         
-        <a href="/2018/01/25/PHP-json-encode-空白问题/" class="archive-article-date">
-  	<time datetime="2018-01-25T09:17:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-25</time>
+        <a href="/2018/02/12/在-Laravel-项目中创建属于你自己的辅助方法/" class="archive-article-date">
+  	<time datetime="2018-02-12T03:23:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-12</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>昨天在修改基于shopsn的项目的源码时遇到个GAY问题<br>最后返回数据时 整个页面空白页 但是又不报错<br>经过排查 定位到是json_encode的问题<br><a id="more"></a><br>于是使用 json_last_error 函数 返回最后错误码<br><img src="/img/18-1-25/json_last_error.png" alt="错误信息"></p>
-<p>发现是 JSON_ERROR_INF_OR_NAN 于是查看 果然有个NAN参数 悄悄混了进去 于是做了处理 完美解决</p>
+        <blockquote>
+<p>注明：本文转自<a href="https://laravel-china.org/topics/8041/create-an-auxiliary-method-of-your-own-in-the-laravel-project" target="_blank" rel="noopener">Laravel-China</a>、<a href="https://laravel-china.org/users/7253" target="_blank" rel="noopener">jinwei</a>。</p>
+</blockquote>
+<p>这是一篇社区协同翻译的文章，已完成翻译，更多信息请点击 <a href="https://laravel-china.org/topics/7440/community-translation-function-online-star2" target="_blank" rel="noopener">协同翻译介绍</a>。</p>
+<hr>
+<a id="more"></a>
+<p><img src="https://dn-phphub.qbox.me/uploads/images/201801/29/1/UJ2FXDsehS.png" alt="file"></p>
+<p>Laravel提供了许多优秀的 <a href="https://d.laravel-china.org/docs/5.5/helpers" target="_blank" rel="noopener">辅助函数</a> 可以方便的操作数组、文件路径、字符串以及路由，比如我们爱用的<code>dd()</code>方法（并不。）。<br>你可以为你的laravel应用和PHP包定义自己的辅助函数，通过Composer自动加载引入。<br>如果你是Laravel或PHP新手，那么让我们介绍一下如何创建由Laravel自动加载的自己的辅助函数。</p>
+<hr>
+<h4 id="Laravel-应用中新建-helpers-文件"><a href="#Laravel-应用中新建-helpers-文件" class="headerlink" title="Laravel 应用中新建 helpers 文件"></a>Laravel 应用中新建 helpers 文件</h4><p>第一件事是要在你的 Laravel 应用中加入 helpers 文件。helpers 文件放在哪个文件夹下，这取决于你自己的个人喜好。这边有几个建议放置 helpers 文件的路径：</p>
+<ol>
+<li><code>app/helpers.php</code></li>
+<li><code>app/Http/helpers.php</code></li>
+</ol>
+<p>本人更倾向于： <code>app/helpers.php</code>。</p>
+<h3 id="自动加载"><a href="#自动加载" class="headerlink" title="自动加载"></a>自动加载</h3><p>要使用PHP辅助方法， 你需要在运行时将它们加载到程序中. 在我职业生涯的初期, 在文件顶部看到这样的代码并不少见:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require_once</span> ROOT . <span class="string">'/helpers.php'</span>;</span><br></pre></td></tr></table></figure></p>
+<p>PHP 函数不能自动加载. 然而，我们有一个比使用<code>require</code>或<code>require_once</code>更好的解决方案。<br>如果你创建了一个新的Laravel项目, 你将会在<code>composer.json</code>文件中看到 <code>autoload</code> 和 <code>autoload-dev</code>的健:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"autoload"</span>: &#123;</span><br><span class="line">    <span class="string">"classmap"</span>: [</span><br><span class="line">        <span class="string">"database/seeds"</span>,</span><br><span class="line">        <span class="string">"database/factories"</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="string">"psr-4"</span>: &#123;</span><br><span class="line">        <span class="string">"App\\"</span>: <span class="string">"app/"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br><span class="line"><span class="string">"autoload-dev"</span>: &#123;</span><br><span class="line">    <span class="string">"psr-4"</span>: &#123;</span><br><span class="line">        <span class="string">"Tests\\"</span>: <span class="string">"tests/"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
+<p>如果你想添加一个helpers 文件, composer有一个 <code>files</code> 健 (是一个文件路径的数组) ，你可以在 <code>autoload</code> 中定义:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"autoload"</span>: &#123;</span><br><span class="line">    <span class="string">"files"</span>: [</span><br><span class="line">        <span class="string">"app/helpers.php"</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="string">"classmap"</span>: [</span><br><span class="line">        <span class="string">"database/seeds"</span>,</span><br><span class="line">        <span class="string">"database/factories"</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="string">"psr-4"</span>: &#123;</span><br><span class="line">        <span class="string">"App\\"</span>: <span class="string">"app/"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
+<p>一旦你在 <code>files</code> 数组中添加了一个新的路径, 你需要转储自动加载器:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer dump-autoload</span><br></pre></td></tr></table></figure></p>
+<p>现在每个需要helpers.php文件的请求将会自动加载 因为 Laravel需要在 <code>public/index.php</code> 中使用Composer的自动加载类:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="keyword">__DIR__</span>.<span class="string">'/../vendor/autoload.php'</span>;</span><br></pre></td></tr></table></figure></p>
+<h3 id="定义函数"><a href="#定义函数" class="headerlink" title="定义函数"></a>定义函数</h3><p>在你的辅助函数类中定义函数是非常简单的，尽管有一些值得注意的地方。所有的 laravel 辅助函数都应当做函数定义冲突的检查：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (! function_exists(<span class="string">'env'</span>)) &#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">env</span><span class="params">($key, $default = null)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这是很巧妙的做法，因为在当你不确定函数是否已经被定义的情况下依然可以确保程序正确运行。<br>我更喜欢用 <code>function_exists</code> 来检查我的辅助函数， 但如果你是在你的应用上下文中定义辅助函数， 你 <em>可以</em> 不使用 <code>function_exists</code> 来做检查。<br>如果跳过检查， 每当你重复定义某个辅助函数的时候都会发生冲突， 可见检查是很有用的。<br>在实际情况中，冲突并不会像你想象的那样经常发生， 而你也应当确保你定义的函数名称不要过于常见。 你也可以为你的函数名称加上前缀以确保他们不会与其他相关函数发生冲突。</p>
+<h3 id="Helper-Example"><a href="#Helper-Example" class="headerlink" title="Helper Example"></a>Helper Example</h3><p>我喜欢Rails的路径和URL辅助，当你定义一个丰富的路由时，你可以免费得到这些辅助。 例如, 一个 <code>photos</code> 资源路由会暴露路由的辅助方法， 就像 <code>new_photo_path</code>, <code>edit_photo_path</code>等等。<br>当我在Laravel里用资源路由的时候，我喜欢添加一些辅助方法，这些方法在我的模板里令定义路由更佳简单。在我的实现中，我喜欢利用我定义的规则，把URL辅助方法传递给一个Eloquent模型并且拿回一个资源路由。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">create_route($model);</span><br><span class="line">edit_route($model);</span><br><span class="line">show_route($model);</span><br><span class="line">destroy_route($model);</span><br></pre></td></tr></table></figure></p>
+<p>这里你可能定义 <code>show_route</code> 在你的 <code>app/helpers.php</code> 文件里 (其他看起来差不多):<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (! function_exists(<span class="string">'show_route'</span>)) &#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">show_route</span><span class="params">($model, $resource = null)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $resource = $resource ?? plural_from_model($model);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> route(<span class="string">"&#123;$resource&#125;.show"</span>, $model);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (! function_exists(<span class="string">'plural_from_model'</span>)) &#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">plural_from_model</span><span class="params">($model)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $plural = Str::plural(class_basename($model));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> Str::kebab($plural);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>plural_from_model()</code> 方法是仅仅一些可复用的代码，辅助路由的方法用这些代码来预测资源路由的基于我喜欢的命名规则的名字，这个命名规则是一个kebab-case(全小写并且分开的单词组，例如 “hello-world-hi”)模型的复数。<br>例如，这里有一个来自模型资源名的例子:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$model = <span class="keyword">new</span> App\LineItem;</span><br><span class="line">plural_from_model($model);</span><br><span class="line">=&gt; line-items</span><br><span class="line"></span><br><span class="line">plural_from_model(<span class="keyword">new</span> App\User);</span><br><span class="line">=&gt; users</span><br></pre></td></tr></table></figure></p>
+<p>用这规则来定义你的资源理由，就像 <code>routes/web.php</code> :<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Route::resource(<span class="string">'line-items'</span>, <span class="string">'LineItemsController'</span>);</span><br><span class="line">Route::resource(<span class="string">'users'</span>, <span class="string">'UsersController'</span>);</span><br></pre></td></tr></table></figure></p>
+<p>然后在你的blade模板里面，你可以做以下操作:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=<span class="string">"&#123;&#123; show_route($lineItem) &#125;&#125;"</span>&gt;</span><br><span class="line">    &#123;&#123; $lineItem-&gt;name &#125;&#125;</span><br><span class="line">&lt;/a&gt;</span><br></pre></td></tr></table></figure></p>
+<p>它会生成如下的HTML:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=<span class="string">"http://localhost/line-items/1"</span>&gt;</span><br><span class="line">    Line Item <span class="comment">#1</span></span><br><span class="line">&lt;/a&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="Packages"><a href="#Packages" class="headerlink" title="Packages"></a>Packages</h3><p>你的Composer包也可以使用一个辅助文件来帮你在项目里使用任何你想要的辅助函数。<br>你将在 <code>composer.json</code> 文件采用相同的方法, 定义一个 <code>files</code> 键在你的辅助文件的一个数组。<br>添加<code>function_exists()</code> 来检查你的辅助函数是必要的，所以使用了你的代码的项目不会因命名冲突而中断。<br>你应该选择正确的在你包里是唯一的名字，并且如果你担心的方法名太普遍，可以考虑使用短前缀。</p>
+<h3 id="了解更多"><a href="#了解更多" class="headerlink" title="了解更多"></a>了解更多</h3><p>查看 Composer的 <a href="https://getcomposer.org/doc/04-schema.md#autoload" target="_blank" rel="noopener">autoloading</a> 文档来了解更多关于引入文件,以及关于自动加载类的一些基本信息.<br>另一个推荐的资源是学习框架中所有适用的 <a href="https://d.laravel-china.org/docs/5.5/helpers" target="_blank" rel="noopener">Laravel helpers</a> 并且通过查看 <a href="https://github.com/laravel/framework/blob/5.5/src/Illuminate/Foundation/helpers.php" target="_blank" rel="noopener">Illuminate\Foundation helpers</a> 和 <a href="https://github.com/laravel/framework/blob/5.5/src/Illuminate/Support/helpers.php" target="_blank" rel="noopener">Illuminate\Support helpers</a> 的源码学习他们是如何工作的.</p>
+<blockquote>
+<p>本文中的所有译文仅用于学习和交流目的，转载请务必注明文章译者、出处、和本文链接<br>我们的翻译工作遵照 <a href="http://zh.wikipedia.org/wiki/Wikipedia:CC" target="_blank" rel="noopener">CC 协议</a> ，如果我们的工作有侵犯到您的权益，请及时联系我们。</p>
+</blockquote>
 
       
 
@@ -196,7 +227,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JSON</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">转载</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Laravel</a>
         		</li>
       		
 		</ul>
@@ -208,7 +243,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/PHP//" class="article-tag-list-link color4">PHP</a>
+        			<a href="/categories/Laravel//" class="article-tag-list-link color3">Laravel</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Laravel/PHP//" class="article-tag-list-link color4">PHP</a>
         		</li>
       		
 		</ul>
@@ -263,7 +302,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://ygnotes.com/2018/01/25/PHP-json-encode-空白问题/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://ygnotes.com/2018/02/12/在-Laravel-项目中创建属于你自己的辅助方法/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -277,15 +316,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/01/26/一个-16年毕业生所经历的-PHP-面试/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          一个 16年毕业生所经历的 PHP 面试（转载）
-        
-      </div>
-    </a>
   
+    <a href="/2018/02/11/PHP-代码简洁之道/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">PHP 代码简洁之道(PHP Clean Code)（转载）</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
