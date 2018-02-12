@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://ygnotes.com">
-  <title>Tag: PHP | David的日常</title>
+  <title>git命令大全 | David的日常</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="PHPER、一个代码搬运工的日常">
-<meta property="og:type" content="website">
-<meta property="og:title" content="David的日常">
-<meta property="og:url" content="http://ygnotes.com/tags/PHP/index.html">
+  <meta name="description" content="git命令大全">
+<meta name="keywords" content="GIT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git命令大全">
+<meta property="og:url" content="http://ygnotes.com/2018/02/12/git命令大全/index.html">
 <meta property="og:site_name" content="David的日常">
-<meta property="og:description" content="PHPER、一个代码搬运工的日常">
+<meta property="og:description" content="git命令大全">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-02-12T07:48:40.700Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="David的日常">
-<meta name="twitter:description" content="PHPER、一个代码搬运工的日常">
+<meta name="twitter:title" content="git命令大全">
+<meta name="twitter:description" content="git命令大全">
   
     <link rel="alternative" href="/atom.xml" title="David的日常" type="application/atom+xml">
   
@@ -153,413 +155,157 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-git命令大全" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      git命令大全
+    </h1>
+  
+
+        
+        <a href="/2018/02/12/git命令大全/" class="archive-article-date">
+  	<time datetime="2018-02-12T07:45:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-12</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>git命令大全<br><a id="more"></a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line">git init                                                  <span class="comment"># 初始化本地git仓库（创建新仓库）</span></span><br><span class="line">git config --global user.name <span class="string">"xxx"</span>                       <span class="comment"># 配置用户名</span></span><br><span class="line">git config --global user.email <span class="string">"xxx@xxx.com"</span>              <span class="comment"># 配置邮件</span></span><br><span class="line">git config --global color.ui <span class="literal">true</span>                         <span class="comment"># git status等命令自动着色</span></span><br><span class="line">git config --global color.status auto</span><br><span class="line">git config --global color.diff auto</span><br><span class="line">git config --global color.branch auto</span><br><span class="line">git config --global color.interactive auto</span><br><span class="line">git config --global --<span class="built_in">unset</span> http.proxy                    <span class="comment"># remove  proxy configuration on git</span></span><br><span class="line">git <span class="built_in">clone</span> git+ssh://git@192.168.53.168/VT.git             <span class="comment"># clone远程仓库</span></span><br><span class="line">git status                                                <span class="comment"># 查看当前版本状态（是否修改）</span></span><br><span class="line">git add xyz                                               <span class="comment"># 添加xyz文件至index</span></span><br><span class="line">git add .                                                 <span class="comment"># 增加当前子目录下所有更改过的文件至index</span></span><br><span class="line">git commit -m <span class="string">'xxx'</span>                                       <span class="comment"># 提交</span></span><br><span class="line">git commit --amend -m <span class="string">'xxx'</span>                               <span class="comment"># 合并上一次提交（用于反复修改）</span></span><br><span class="line">git commit -am <span class="string">'xxx'</span>                                      <span class="comment"># 将add和commit合为一步</span></span><br><span class="line">git rm xxx                                                <span class="comment"># 删除index中的文件</span></span><br><span class="line">git rm -r *                                               <span class="comment"># 递归删除</span></span><br><span class="line">git <span class="built_in">log</span>                                                   <span class="comment"># 显示提交日志</span></span><br><span class="line">git <span class="built_in">log</span> -1                                                <span class="comment"># 显示1行日志 -n为n行</span></span><br><span class="line">git <span class="built_in">log</span> -5</span><br><span class="line">git <span class="built_in">log</span> --<span class="built_in">stat</span>                                            <span class="comment"># 显示提交日志及相关变动文件</span></span><br><span class="line">git <span class="built_in">log</span> -p -m</span><br><span class="line">git show dfb02e6e4f2f7b573337763e5c0013802e392818         <span class="comment"># 显示某个提交的详细内容</span></span><br><span class="line">git show dfb02                                            <span class="comment"># 可只用commitid的前几位</span></span><br><span class="line">git show HEAD                                             <span class="comment"># 显示HEAD提交日志</span></span><br><span class="line">git show HEAD^                                            <span class="comment"># 显示HEAD的父（上一个版本）的提交日志 ^^为上两个版本 ^5为上5个版本</span></span><br><span class="line">git tag                                                   <span class="comment"># 显示已存在的tag</span></span><br><span class="line">git tag -a v2.0 -m <span class="string">'xxx'</span>                                  <span class="comment"># 增加v2.0的tag</span></span><br><span class="line">git show v2.0                                             <span class="comment"># 显示v2.0的日志及详细内容</span></span><br><span class="line">git <span class="built_in">log</span> v2.0                                              <span class="comment"># 显示v2.0的日志</span></span><br><span class="line">git diff                                                  <span class="comment"># 显示所有未添加至index的变更</span></span><br><span class="line">git diff --cached                                         <span class="comment"># 显示所有已添加index但还未commit的变更</span></span><br><span class="line">git diff HEAD^                                            <span class="comment"># 比较与上一个版本的差异</span></span><br><span class="line">git diff HEAD -- ./lib                                    <span class="comment"># 比较与HEAD版本lib目录的差异</span></span><br><span class="line">git diff origin/master..master                            <span class="comment"># 比较远程分支master上有本地分支master上没有的</span></span><br><span class="line">git diff origin/master..master --<span class="built_in">stat</span>                     <span class="comment"># 只显示差异的文件，不显示具体内容</span></span><br><span class="line">git remote add origin git+ssh://git@192.168.53.168/VT.git <span class="comment"># 增加远程定义（用于push/pull/fetch）</span></span><br><span class="line">git branch                                                <span class="comment"># 显示本地分支</span></span><br><span class="line">git branch --contains 50089                               <span class="comment"># 显示包含提交50089的分支</span></span><br><span class="line">git branch -a                                             <span class="comment"># 显示所有分支</span></span><br><span class="line">git branch -r                                             <span class="comment"># 显示所有原创分支</span></span><br><span class="line">git branch --merged                                       <span class="comment"># 显示所有已合并到当前分支的分支</span></span><br><span class="line">git branch --no-merged                                    <span class="comment"># 显示所有未合并到当前分支的分支</span></span><br><span class="line">git branch -m master master_copy                          <span class="comment"># 本地分支改名</span></span><br><span class="line">git checkout -b master_copy                               <span class="comment"># 从当前分支创建新分支master_copy并检出</span></span><br><span class="line">git checkout -b master master_copy                        <span class="comment"># 上面的完整版</span></span><br><span class="line">git checkout features/performance                         <span class="comment"># 检出已存在的features/performance分支</span></span><br><span class="line">git checkout --track hotfixes/BJVEP933                    <span class="comment"># 检出远程分支hotfixes/BJVEP933并创建本地跟踪分支</span></span><br><span class="line">git checkout v2.0                                         <span class="comment"># 检出版本v2.0</span></span><br><span class="line">git checkout -b devel origin/develop                      <span class="comment"># 从远程分支develop创建新本地分支devel并检出</span></span><br><span class="line">git checkout -- README                                    <span class="comment"># 检出head版本的README文件（可用于修改错误回退）</span></span><br><span class="line">git merge origin/master                                   <span class="comment"># 合并远程master分支至当前分支</span></span><br><span class="line">git cherry-pick ff44785404a8e                             <span class="comment"># 合并提交ff44785404a8e的修改</span></span><br><span class="line">git push origin master                                    <span class="comment"># 将当前分支push到远程master分支</span></span><br><span class="line">git push origin :hotfixes/BJVEP933                        <span class="comment"># 删除远程仓库的hotfixes/BJVEP933分支</span></span><br><span class="line">git push --tags                                           <span class="comment"># 把所有tag推送到远程仓库</span></span><br><span class="line">git fetch                                                 <span class="comment"># 获取所有远程分支（不更新本地分支，另需merge）</span></span><br><span class="line">git fetch --prune                                         <span class="comment"># 获取所有原创分支并清除服务器上已删掉的分支</span></span><br><span class="line">git pull origin master                                    <span class="comment"># 获取远程分支master并merge到当前分支</span></span><br><span class="line">git mv README README2                                     <span class="comment"># 重命名文件README为README2</span></span><br><span class="line">git reset --hard HEAD                                     <span class="comment"># 将当前版本重置为HEAD（通常用于merge失败回退）</span></span><br><span class="line">git rebase</span><br><span class="line">git branch -d hotfixes/BJVEP933                           <span class="comment"># 删除分支hotfixes/BJVEP933（本分支修改已合并到其他分支）</span></span><br><span class="line">git branch -D hotfixes/BJVEP933                           <span class="comment"># 强制删除分支hotfixes/BJVEP933</span></span><br><span class="line">git ls-files                                              <span class="comment"># 列出git index包含的文件</span></span><br><span class="line">git show-branch                                           <span class="comment"># 图示当前分支历史</span></span><br><span class="line">git show-branch --all                                     <span class="comment"># 图示所有分支历史</span></span><br><span class="line">git whatchanged                                           <span class="comment"># 显示提交历史对应的文件修改</span></span><br><span class="line">git revert dfb02e6e4f2f7b573337763e5c0013802e392818       <span class="comment"># 撤销提交dfb02e6e4f2f7b573337763e5c0013802e392818</span></span><br><span class="line">git ls-tree HEAD                                          <span class="comment"># 内部命令：显示某个git对象</span></span><br><span class="line">git rev-parse v2.0                                        <span class="comment"># 内部命令：显示某个ref对于的SHA1 HASH</span></span><br><span class="line">git reflog                                                <span class="comment"># 显示所有提交，包括孤立节点</span></span><br><span class="line">git show HEAD@&#123;5&#125;</span><br><span class="line">git show master@&#123;yesterday&#125;                               <span class="comment"># 显示master分支昨天的状态</span></span><br><span class="line">git <span class="built_in">log</span> --pretty=format:<span class="string">'%h %s'</span> --graph                   <span class="comment"># 图示提交日志</span></span><br><span class="line">git show HEAD~3</span><br><span class="line">git show -s --pretty=raw 2be7fcb476</span><br><span class="line">git stash                                                 <span class="comment"># 暂存当前修改，将所有至为HEAD状态</span></span><br><span class="line">git stash list                                            <span class="comment"># 查看所有暂存</span></span><br><span class="line">git stash show -p stash@&#123;0&#125;                               <span class="comment"># 参考第一次暂存</span></span><br><span class="line">git stash apply stash@&#123;0&#125;                                 <span class="comment"># 应用第一次暂存</span></span><br><span class="line">git grep <span class="string">"delete from"</span>                                    <span class="comment"># 文件中搜索文本“delete from”</span></span><br><span class="line">git grep -e <span class="string">'#define'</span> --and -e SORT_DIRENT</span><br><span class="line">git gc</span><br><span class="line">git fsck</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/02/12/在-Laravel-项目中创建属于你自己的辅助方法/" class="archive-article-date">
-  	<time datetime="2018-02-12T03:23:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/02/12/在-Laravel-项目中创建属于你自己的辅助方法/">在 Laravel 项目中创建属于你自己的辅助方法（转载）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">PHP</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">转载</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Laravel</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">GIT</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/Laravel//" class="article-tag-list-link color3">Laravel</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Laravel/PHP//" class="article-tag-list-link color4">PHP</a>
+        			<a href="/categories/GIT//" class="article-tag-list-link color4">GIT</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://ygnotes.com/2018/02/12/git命令大全/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/02/11/PHP-代码简洁之道/" class="archive-article-date">
-  	<time datetime="2018-02-11T05:42:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-11</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/02/12/MySQL索引背后的数据结构及算法原理/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">MySQL索引背后的数据结构及算法原理（转载）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/02/11/PHP-代码简洁之道/">PHP 代码简洁之道(PHP Clean Code)（转载）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">PHP</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">转载</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/PHP//" class="article-tag-list-link color4">PHP</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/02/11/手动实现-DI-容器/" class="archive-article-date">
-  	<time datetime="2018-02-11T02:22:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/02/11/手动实现-DI-容器/">手动实现 DI 容器（转载）</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">PHP</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">转载</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Laravel</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Laravel//" class="article-tag-list-link color3">Laravel</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Laravel/PHP//" class="article-tag-list-link color4">PHP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/27/session的原理总结/" class="archive-article-date">
-  	<time datetime="2018-01-27T05:50:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/27/session的原理总结/">session的原理总结（转载）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">PHP</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">转载</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/PHP//" class="article-tag-list-link color4">PHP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/26/十个-Laravel-5-程序优化技巧/" class="archive-article-date">
-  	<time datetime="2018-01-26T01:17:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/26/十个-Laravel-5-程序优化技巧/">十个 Laravel 5 程序优化技巧（转载）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">PHP</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">转载</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Laravel</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/PHP//" class="article-tag-list-link color4">PHP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/26/一个-16年毕业生所经历的-PHP-面试/" class="archive-article-date">
-  	<time datetime="2018-01-26T01:00:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/26/一个-16年毕业生所经历的-PHP-面试/">一个 16年毕业生所经历的 PHP 面试（转载）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">PHP</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">转载</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/PHP//" class="article-tag-list-link color4">PHP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/25/PHP-json-encode-空白问题/" class="archive-article-date">
-  	<time datetime="2018-01-25T09:17:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/25/PHP-json-encode-空白问题/">PHP json_encode 空白问题</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">PHP</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JSON</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/PHP//" class="article-tag-list-link color4">PHP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -582,9 +328,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
