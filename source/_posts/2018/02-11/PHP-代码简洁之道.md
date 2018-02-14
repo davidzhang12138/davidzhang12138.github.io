@@ -1,12 +1,9 @@
 ---
-title: PHP 代码简洁之道(PHP Clean Code)（转载）
+title: PHP 代码简洁之道(PHP Clean Code)
 date: 2018-02-11 13:42:55
-tags: [PHP,转载]
+tags: [PHP]
 categories: [PHP]
 ---
-> 注明：本文转自[Laravel-China][1]、[Summer][2]。
-
-这是一篇社区协同翻译的文章，已完成翻译，更多信息请点击[协同翻译介绍][3]
 
 ## 介绍
 Robert C.Martin's 的 软件工程师准则 [Clean Code][4] 同样适用于PHP。它并不是一个编码风格指南，它指导我们用PHP写出具有可读性，可复用性且可分解的代码。
@@ -1614,8 +1611,7 @@ function showList(array $employees): void
     }
 }
 ```
-> 本文中的所有译文仅用于学习和交流目的，转载请务必注明文章译者、出处、和本文链接 <br>
-> 我们的翻译工作遵照 [CC 协议][29]，如果我们的工作有侵犯到您的权益，请及时联系我们。 
+> 注明：本文转自[Laravel-China][1]、[Summer][2]。
                 
 
 [1]: https://laravel-china.org/topics/7774/the-conciseness-of-the-php-code-php-clean-code

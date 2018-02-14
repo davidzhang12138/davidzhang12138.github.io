@@ -1,11 +1,9 @@
 ---
-title: 十个 Laravel 5 程序优化技巧（转载）
+title: 十个 Laravel 5 程序优化技巧
 date: 2018-01-26 09:17:16
-tags: [PHP,转载,Laravel]
+tags: [PHP,Laravel]
 categories: [PHP]
 ---
-
-> 注明：本文转自[Laravel-China][1]、[Summer][2]。
 
 说明
 ---
@@ -108,6 +106,9 @@ HHVM 和 OpCache 都能轻轻松松的让你的应用程序在不用做任何修
 作为优化的标准，一个页面只应该加载一个 CSS 和 一个 JS 文件，并且文件要能方便走 CDN，需要文件名随着修改而变化。
 
 Laravel Elixir 提供了一套简便实用的方案，详细请见文档：[Laravel Elixir 文档][10]。
+
+> 注明：本文转自[Laravel-China][1]、[Summer][2]。
+
 
 [1]: https://laravel-china.org/articles/2020/ten-laravel-5-program-optimization-techniques
 [2]: https://laravel-china.org/users/1

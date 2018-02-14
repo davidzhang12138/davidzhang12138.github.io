@@ -1,11 +1,10 @@
 ---
-title: session的原理总结（转载）
+title: session的原理总结
 date: 2018-01-27 13:50:59
-tags: [PHP,转载]
+tags: [PHP]
 categories: [PHP]
 ---
 
-> 注明：本文转自[CNBLOG][1]。
 
 之前在学校的时候，只知道session与cookie的区别在于：session是保存在服务器端，cookie保存在客户端。
 session怎么样保存的？以文件的形式保存。自己去测试过。有的忘记了。对应session的id号模糊不清。
@@ -182,5 +181,7 @@ session.bug_compat_warn = 1
 在某些操作系统上，建议使用可以高效处理大量小尺寸文件的文件系统上的路径来保存会话数据。 
 例如，在 Linux 平台上，对于会话数据保存的工作而言，reiserfs 文件系统会比 ext2fs 文件系统能够提供更好的性能。
 这个是好的方向。session的数据一般很小。适合小文件的文件系统来使用，而我们的传统的文件系统不太适合。
+
+> 注明：本文转自[CNBLOG][1]。
 
 [1]: http://www.cnblogs.com/wangtao_20/archive/2011/02/16/1955659.html

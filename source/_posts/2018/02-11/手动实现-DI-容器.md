@@ -1,10 +1,9 @@
 ---
-title: 手动实现 DI 容器（转载）
+title: 手动实现 DI 容器
 date: 2018-02-11 10:22:55
-tags: [Laravel,PHP,转载]
+tags: [Laravel,PHP]
 categories: [Laravel,PHP]
 ---
-> 注明：本文转自[Laravel-China][1]、[zhengzean][2]。
 
 关于依赖注入相信大家应该都经常接触或者至少有所耳闻，比较知名的框架都支持依赖注入，比如Java的Spring，PHP的Laravel、Symfony等。现在我开始手动实现一个简陋的DI容器吧。
 ## 由开车开始
@@ -321,6 +320,7 @@ $driver->drive();
 这里只是实现了一个非常简陋的DI容器，实际中还需要考虑很多，而且这里的容器功能上还很简陋。还有一些坑没处理，比如出现循环依赖怎么处理、延迟加载的机制……
 这里只是我周末闲暇练手的一点记录，大家如果有兴趣可以阅读以下Laravel或者Symfony容器那块的源码，或者了解一下Spring的容器。后续有空我也会继续完善。
 
+> 注明：本文转自[Laravel-China][1]、[zhengzean][2]。
 
 [1]: https://laravel-china.org/articles/7573/manual-implementation-of-the-di-container
 [2]: https://laravel-china.org/users/18655
