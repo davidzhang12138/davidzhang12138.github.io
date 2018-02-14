@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://ygnotes.com">
-  <title>十个 Laravel 5 程序优化技巧（转载） | David的博客、web开发者、代码搬运工</title>
+  <title>十个 Laravel 5 程序优化技巧 | David的博客、web开发者、代码搬运工</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="注明：本文转自Laravel-China、Summer。  说明性能一直是 Laravel 框架为人诟病的一个点，所以调优 Laravel 程序算是一个必学的技能。接下来分享一些开发的最佳实践，还有调优技巧，大家有别的建议也欢迎留言讨论。这里是简单的列表：">
-<meta name="keywords" content="PHP,Laravel,转载">
+  <meta name="description" content="说明性能一直是 Laravel 框架为人诟病的一个点，所以调优 Laravel 程序算是一个必学的技能。接下来分享一些开发的最佳实践，还有调优技巧，大家有别的建议也欢迎留言讨论。这里是简单的列表：">
+<meta name="keywords" content="PHP,Laravel">
 <meta property="og:type" content="article">
-<meta property="og:title" content="十个 Laravel 5 程序优化技巧（转载）">
+<meta property="og:title" content="十个 Laravel 5 程序优化技巧">
 <meta property="og:url" content="http://ygnotes.com/2018/01/26/十个-Laravel-5-程序优化技巧/index.html">
 <meta property="og:site_name" content="David的博客、web开发者、代码搬运工">
-<meta property="og:description" content="注明：本文转自Laravel-China、Summer。  说明性能一直是 Laravel 框架为人诟病的一个点，所以调优 Laravel 程序算是一个必学的技能。接下来分享一些开发的最佳实践，还有调优技巧，大家有别的建议也欢迎留言讨论。这里是简单的列表：">
+<meta property="og:description" content="说明性能一直是 Laravel 框架为人诟病的一个点，所以调优 Laravel 程序算是一个必学的技能。接下来分享一些开发的最佳实践，还有调优技巧，大家有别的建议也欢迎留言讨论。这里是简单的列表：">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-01-26T09:12:07.488Z">
+<meta property="og:updated_time" content="2018-02-14T06:22:07.308Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="十个 Laravel 5 程序优化技巧（转载）">
-<meta name="twitter:description" content="注明：本文转自Laravel-China、Summer。  说明性能一直是 Laravel 框架为人诟病的一个点，所以调优 Laravel 程序算是一个必学的技能。接下来分享一些开发的最佳实践，还有调优技巧，大家有别的建议也欢迎留言讨论。这里是简单的列表：">
+<meta name="twitter:title" content="十个 Laravel 5 程序优化技巧">
+<meta name="twitter:description" content="说明性能一直是 Laravel 框架为人诟病的一个点，所以调优 Laravel 程序算是一个必学的技能。接下来分享一些开发的最佳实践，还有调优技巧，大家有别的建议也欢迎留言讨论。这里是简单的列表：">
   
     <link rel="alternative" href="/atom.xml" title="David的博客、web开发者、代码搬运工" type="application/atom+xml">
   
@@ -162,7 +162,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      十个 Laravel 5 程序优化技巧（转载）
+      十个 Laravel 5 程序优化技巧
     </h1>
   
 
@@ -175,10 +175,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>注明：本文转自<a href="https://laravel-china.org/articles/2020/ten-laravel-5-program-optimization-techniques" target="_blank" rel="noopener">Laravel-China</a>、<a href="https://laravel-china.org/users/1" target="_blank" rel="noopener">Summer</a>。</p>
-</blockquote>
-<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>性能一直是 Laravel 框架为人诟病的一个点，所以调优 Laravel 程序算是一个必学的技能。<br>接下来分享一些开发的最佳实践，还有调优技巧，大家有别的建议也欢迎留言讨论。<br>这里是简单的列表：</p>
+        <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>性能一直是 Laravel 框架为人诟病的一个点，所以调优 Laravel 程序算是一个必学的技能。<br>接下来分享一些开发的最佳实践，还有调优技巧，大家有别的建议也欢迎留言讨论。<br>这里是简单的列表：</p>
 <a id="more"></a>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">配置信息缓存 artisan config:cache</span><br><span class="line">路由缓存 artisan route:cache</span><br><span class="line">类映射加载优化 artisan optimize</span><br><span class="line">自动加载优化 composer dumpautoload</span><br><span class="line">使用 Memcached 来存储会话 config/session.php</span><br><span class="line">使用专业缓存驱动器 config/cache.php</span><br><span class="line">数据库请求优化</span><br><span class="line">为数据集书写缓存逻辑</span><br><span class="line">使用即时编译器（JIT），如：HHVM、OpCache</span><br><span class="line">前端资源合并 Elixir</span><br></pre></td></tr></table></figure>
 <h3 id="1-配置信息缓存"><a href="#1-配置信息缓存" class="headerlink" title="1. 配置信息缓存"></a>1. 配置信息缓存</h3><p>使用以下 Artisan 自带命令，把 config 文件夹里所有配置信息合并到一个文件里，减少运行时文件的载入数量：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan config:cache</span><br></pre></td></tr></table></figure></p>
@@ -208,6 +205,9 @@
 <h3 id="9-使用即时编译器"><a href="#9-使用即时编译器" class="headerlink" title="9. 使用即时编译器"></a>9. 使用即时编译器</h3><p>HHVM 和 OpCache 都能轻轻松松的让你的应用程序在不用做任何修改的情况下，直接提高 50% 或者更高的性能，PHPhub 之前做个一个实验，具体请见：<a href="https://laravel-china.org/topics/301" target="_blank" rel="noopener">使用 OpCache 提升 PHP 5.5+ 程序性能</a>。</p>
 <h3 id="10-前端资源合并"><a href="#10-前端资源合并" class="headerlink" title="10. 前端资源合并"></a>10. 前端资源合并</h3><p>作为优化的标准，一个页面只应该加载一个 CSS 和 一个 JS 文件，并且文件要能方便走 CDN，需要文件名随着修改而变化。</p>
 <p>Laravel Elixir 提供了一套简便实用的方案，详细请见文档：<a href="https://doc.laravel-china.org/docs/5.1/elixir" target="_blank" rel="noopener">Laravel Elixir 文档</a>。</p>
+<blockquote>
+<p>注明：本文转自<a href="https://laravel-china.org/articles/2020/ten-laravel-5-program-optimization-techniques" target="_blank" rel="noopener">Laravel-China</a>、<a href="https://laravel-china.org/users/1" target="_blank" rel="noopener">Summer</a>。</p>
+</blockquote>
 
       
 
@@ -226,10 +226,6 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Laravel</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">转载</a>
         		</li>
       		
 		</ul>
@@ -321,7 +317,7 @@
   
   
     <a href="/2018/01/26/一个-16年毕业生所经历的-PHP-面试/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">一个 16年毕业生所经历的 PHP 面试（转载）</div>
+      <div class="article-nav-title">一个 16年毕业生所经历的 PHP 面试</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -455,19 +451,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Laravel</a>
+                <a href="javascript:void(0)" class="js-tag color1">MYSQL</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">转载</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">LINUX</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GIT</a>
+                <a href="javascript:void(0)" class="js-tag color3">其他</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -475,7 +463,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MYSQL</a>
+                <a href="javascript:void(0)" class="js-tag color3">Laravel</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">GIT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">转载</a>
               </li>
             
             <div class="clearfix"></div>

@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://ygnotes.com">
-  <title>nginx负载均衡配置（转载） | David的博客、web开发者、代码搬运工</title>
+  <title>nginx负载均衡配置 | David的博客、web开发者、代码搬运工</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="注明：本文转自nMask’s Blog。  　　nginx功能强大且常用作反向代理或者负载均衡，当我们部署了一个web系统之后，面对日益增多的访问流量，采用nginx做负载均衡是一个实惠的方案，本文用来记录nginx实现负载均衡的一些操作。 实验环境　　为了能够更符合真实环境，我在本机host上绑定了一个域名phantomjs.me，其ip地址为192.168.1.2，是一台安装了nginx的l">
-<meta name="keywords" content="转载,NGINX">
+  <meta name="description" content="nginx功能强大且常用作反向代理或者负载均衡，当我们部署了一个web系统之后，面对日益增多的访问流量，采用nginx做负载均衡是一个实惠的方案，本文用来记录nginx实现负载均衡的一些操作。 实验环境　　为了能够更符合真实环境，我在本机host上绑定了一个域名phantomjs.me，其ip地址为192.168.1.2，是一台安装了nginx的linux服务器，用来模拟负载均衡服务器；另外同">
+<meta name="keywords" content="NGINX">
 <meta property="og:type" content="article">
-<meta property="og:title" content="nginx负载均衡配置（转载）">
+<meta property="og:title" content="nginx负载均衡配置">
 <meta property="og:url" content="http://ygnotes.com/2018/01/28/nginx负载均衡配置/index.html">
 <meta property="og:site_name" content="David的博客、web开发者、代码搬运工">
-<meta property="og:description" content="注明：本文转自nMask’s Blog。  　　nginx功能强大且常用作反向代理或者负载均衡，当我们部署了一个web系统之后，面对日益增多的访问流量，采用nginx做负载均衡是一个实惠的方案，本文用来记录nginx实现负载均衡的一些操作。 实验环境　　为了能够更符合真实环境，我在本机host上绑定了一个域名phantomjs.me，其ip地址为192.168.1.2，是一台安装了nginx的l">
+<meta property="og:description" content="nginx功能强大且常用作反向代理或者负载均衡，当我们部署了一个web系统之后，面对日益增多的访问流量，采用nginx做负载均衡是一个实惠的方案，本文用来记录nginx实现负载均衡的一些操作。 实验环境　　为了能够更符合真实环境，我在本机host上绑定了一个域名phantomjs.me，其ip地址为192.168.1.2，是一台安装了nginx的linux服务器，用来模拟负载均衡服务器；另外同">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-01-28T10:27:20.415Z">
+<meta property="og:updated_time" content="2018-02-14T06:23:28.390Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="nginx负载均衡配置（转载）">
-<meta name="twitter:description" content="注明：本文转自nMask’s Blog。  　　nginx功能强大且常用作反向代理或者负载均衡，当我们部署了一个web系统之后，面对日益增多的访问流量，采用nginx做负载均衡是一个实惠的方案，本文用来记录nginx实现负载均衡的一些操作。 实验环境　　为了能够更符合真实环境，我在本机host上绑定了一个域名phantomjs.me，其ip地址为192.168.1.2，是一台安装了nginx的l">
+<meta name="twitter:title" content="nginx负载均衡配置">
+<meta name="twitter:description" content="nginx功能强大且常用作反向代理或者负载均衡，当我们部署了一个web系统之后，面对日益增多的访问流量，采用nginx做负载均衡是一个实惠的方案，本文用来记录nginx实现负载均衡的一些操作。 实验环境　　为了能够更符合真实环境，我在本机host上绑定了一个域名phantomjs.me，其ip地址为192.168.1.2，是一台安装了nginx的linux服务器，用来模拟负载均衡服务器；另外同">
   
     <link rel="alternative" href="/atom.xml" title="David的博客、web开发者、代码搬运工" type="application/atom+xml">
   
@@ -162,7 +162,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      nginx负载均衡配置（转载）
+      nginx负载均衡配置
     </h1>
   
 
@@ -175,10 +175,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>注明：本文转自<a href="https://thief.one/2017/08/22/1/" target="_blank" rel="noopener">nMask’s Blog</a>。</p>
-</blockquote>
-<p>　　nginx功能强大且常用作反向代理或者负载均衡，当我们部署了一个web系统之后，面对日益增多的访问流量，采用nginx做负载均衡是一个实惠的方案，本文用来记录nginx实现负载均衡的一些操作。</p>
+        <p>　　nginx功能强大且常用作反向代理或者负载均衡，当我们部署了一个web系统之后，面对日益增多的访问流量，采用nginx做负载均衡是一个实惠的方案，本文用来记录nginx实现负载均衡的一些操作。</p>
 <h3 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h3><p>　　为了能够更符合真实环境，我在本机host上绑定了一个域名phantomjs.me，其ip地址为192.168.1.2，是一台安装了nginx的linux服务器，用来模拟负载均衡服务器；另外同一内网中还有3台web服务器，其ip分别是192.168.1.3，192.168.1.4，192.168.1.5。</p>
 <a id="more"></a>
 <h3 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的　　"></a>实验目的　　</h3><p>　　当我们访问phantomjs.me域名时，负载均衡服务器能够将流量负载到3台web服务器中，负载的方式可以自由选择。</p>
@@ -208,6 +205,9 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">location /update/&#123;<span class="comment">#将本地update目录代理到baidu.com/update目录下，即访问本地update其实是在访问baidu的update。</span></span><br><span class="line">        proxy_pass         http:<span class="comment">//baidu.com/update; </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>重启nginx，尝试访问<a href="http://phantomjs.me/update/" target="_blank" rel="noopener">http://phantomjs.me/update/</a><br>其实际获取的是baidu的update目录资源。</p>
 <p>关于nginx负载均衡更详细的内容，可以访问：<a href="http://www.jusene.me/2017/05/24/nginx-proxy/" target="_blank" rel="noopener">http://www.jusene.me/2017/05/24/nginx-proxy/</a></p>
+<blockquote>
+<p>注明：本文转自<a href="https://thief.one/2017/08/22/1/" target="_blank" rel="noopener">nMask’s Blog</a>。</p>
+</blockquote>
 
       
 
@@ -220,10 +220,6 @@
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">转载</a>
-        		</li>
-      		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">NGINX</a>
         		</li>
@@ -310,14 +306,14 @@
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          手动实现 DI 容器（转载）
+          手动实现 DI 容器
         
       </div>
     </a>
   
   
     <a href="/2018/01/27/session的原理总结/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">session的原理总结（转载）</div>
+      <div class="article-nav-title">session的原理总结</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -451,19 +447,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Laravel</a>
+                <a href="javascript:void(0)" class="js-tag color1">MYSQL</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">转载</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">LINUX</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GIT</a>
+                <a href="javascript:void(0)" class="js-tag color3">其他</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -471,7 +459,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MYSQL</a>
+                <a href="javascript:void(0)" class="js-tag color3">Laravel</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">GIT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">转载</a>
               </li>
             
             <div class="clearfix"></div>

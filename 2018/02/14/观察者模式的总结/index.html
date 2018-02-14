@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://ygnotes.com">
-  <title>Linux常见面试题（转载） | David的博客、web开发者、代码搬运工</title>
+  <title>观察者模式的总结 | David的博客、web开发者、代码搬运工</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="注明：本文转自LeoLan’s Blog。">
-<meta name="keywords" content="LINUX">
+  <meta name="description" content="什么是观察者模式观察者模式用于实现对对象进行观察：一旦主体对象状态发生改变，与之关联的观察者对象会收到通知，并进行相应操作。举个例子说明：">
+<meta name="keywords" content="PHP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux常见面试题（转载）">
-<meta property="og:url" content="http://ygnotes.com/2018/02/12/Linux常见面试题/index.html">
+<meta property="og:title" content="观察者模式的总结">
+<meta property="og:url" content="http://ygnotes.com/2018/02/14/观察者模式的总结/index.html">
 <meta property="og:site_name" content="David的博客、web开发者、代码搬运工">
-<meta property="og:description" content="注明：本文转自LeoLan’s Blog。">
+<meta property="og:description" content="什么是观察者模式观察者模式用于实现对对象进行观察：一旦主体对象状态发生改变，与之关联的观察者对象会收到通知，并进行相应操作。举个例子说明：">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-02-12T08:02:53.824Z">
+<meta property="og:updated_time" content="2018-02-14T06:19:57.315Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux常见面试题（转载）">
-<meta name="twitter:description" content="注明：本文转自LeoLan’s Blog。">
+<meta name="twitter:title" content="观察者模式的总结">
+<meta name="twitter:description" content="什么是观察者模式观察者模式用于实现对对象进行观察：一旦主体对象状态发生改变，与之关联的观察者对象会收到通知，并进行相应操作。举个例子说明：">
   
     <link rel="alternative" href="/atom.xml" title="David的博客、web开发者、代码搬运工" type="application/atom+xml">
   
@@ -155,28 +155,38 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Linux常见面试题" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-观察者模式的总结" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Linux常见面试题（转载）
+      观察者模式的总结
     </h1>
   
 
         
-        <a href="/2018/02/12/Linux常见面试题/" class="archive-article-date">
-  	<time datetime="2018-02-12T08:00:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-12</time>
+        <a href="/2018/02/14/观察者模式的总结/" class="archive-article-date">
+  	<time datetime="2018-02-14T05:53:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-14</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>注明：本文转自<a href="https://www.leolan.top/index.php/posts/36.html" target="_blank" rel="noopener">LeoLan’s Blog</a>。</p>
+        <h2 id="什么是观察者模式"><a href="#什么是观察者模式" class="headerlink" title="什么是观察者模式"></a>什么是观察者模式</h2><p>观察者模式用于实现对对象进行观察：一旦主体对象状态发生改变，与之关联的观察者对象会收到通知，并进行相应操作。<br>举个例子说明：<br><a id="more"></a><br>假设一个这样的情景，当公司有一个新员工入职了，入职的当天，HR需要为他办理入职手续，网管需要给他配好电脑和办公用品，部门主管需要带他熟悉部门。<br>传统的编程方式，就是在员工入职这个事件发生的代码之后直接加入处理逻辑,当后续我们需要增加处理逻辑时（比如员工入职后增加培训），代码会变得难以维护。这种方式是耦合的，侵入式的，增加新的逻辑需要改变事件主题的代码。<br>运用观察者模式，将员工的入职作为事件，其他的处理逻辑都做为观察者的操作，那么，当以后需要再增加更多的逻辑时，新增逻辑代码就会很方便。具体代码实现如下。</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>首先定义一个观察者接口，所有的观察者都实现这个接口（为什么要定义成接口呢？因为每一个观察者的具体行为需要具体去实现，用接口定义一个统一的方法，具体的实现交给观察者去实现）<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">observer</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">update</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>再定义一个事件生成器的抽象类，用来使继承它的事件都具有通知观察者的能力。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">EventGenerator</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> $observers = [];</span><br><span class="line"></span><br><span class="line">    <span class="comment">//定义一个添加观察者的方法</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">addOberver</span><span class="params">(Observer $observer)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;observers[] = $observer;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//定义一个通知观察者的方法</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">notify</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">foreach</span>(<span class="keyword">$this</span>-&gt;observers <span class="keyword">as</span> $observer)</span><br><span class="line">        &#123;</span><br><span class="line">            $observer-&gt;update();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后再来定义事件类<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">event</span> <span class="keyword">extends</span> <span class="title">EventGenerator</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">//定义一个触发观察者的方法</span></span><br><span class="line">    <span class="keyword">public</span> funtion trigger()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"Event &lt;br/&gt;"</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//开始通知观察者</span></span><br><span class="line">        <span class="keyword">$this</span>-&gt;notify();</span><br><span class="line">    &#125;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>开始使用<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$event = <span class="keyword">new</span> event();</span><br><span class="line">$event-&gt;trigger();</span><br></pre></td></tr></table></figure></p>
+<p>这个时候，当我们要在事件发生的时候增加别的操作，只需要新增观察者就可以了<br>新增一个观察者<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Observer1</span> <span class="keyword">implements</span> <span class="title">Observer</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">update</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"操作1&lt;br/&gt;"</span>;    </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后使用的时候就是<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$event = <span class="keyword">new</span> event();</span><br><span class="line"><span class="comment">// 增加观察者</span></span><br><span class="line">$event-&gt;addObserver(<span class="keyword">new</span> Observer1);</span><br><span class="line">$event-&gt;trigger();</span><br></pre></td></tr></table></figure></p>
+<p>如果需要在事件发生后再增加操作，只需再新增相应的观察者即可。</p>
+<h2 id="应用观察者模式的好处"><a href="#应用观察者模式的好处" class="headerlink" title="应用观察者模式的好处"></a>应用观察者模式的好处</h2><p>观察者模式解除了主体和具体观察者的耦合，让耦合的双方都依赖于抽象，而不是依赖具体。从而使得各自的变化都不会影响另一边的变化。<br>降低对象之间的耦合度以达到解耦的目的，符合”开闭原则”的要求。</p>
+<h2 id="利用-SPL-实现观察者模式"><a href="#利用-SPL-实现观察者模式" class="headerlink" title="利用 SPL 实现观察者模式"></a>利用 SPL 实现观察者模式</h2><p>PHP 通过内置的 SPL 扩展提供了对观察者模式的原生支持，其中的观察者由 3 个元素组成 ： SplObserver 接口、 SplSubject 接口和 SplObjectStorage 工具类。<br>下面是利用 SPL 实现观察者模式的代码。SPL 的地址见<a href="https://secure.php.net/manual/zh/book.spl.php" target="_blank" rel="noopener">这里</a>。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyObserver1</span> <span class="keyword">implements</span> <span class="title">SplObserver</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">update</span><span class="params">(SplSubject $subject)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="keyword">__CLASS__</span> . <span class="string">' - '</span> . $subject-&gt;getName();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyObserver2</span> <span class="keyword">implements</span> <span class="title">SplObserver</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">update</span><span class="params">(SplSubject $subject)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="keyword">__CLASS__</span> . <span class="string">' - '</span> . $subject-&gt;getName();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MySubject</span> <span class="keyword">implements</span> <span class="title">SplSubject</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> $observers;</span><br><span class="line">    <span class="keyword">private</span> $name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;observers = <span class="keyword">new</span> SplObjectStorage();</span><br><span class="line">        <span class="keyword">$this</span>-&gt;name = $name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">attach</span><span class="params">(SplObserver $observer)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;observers-&gt;attach($observer);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">detach</span><span class="params">(SplObserver $observer)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;observers-&gt;detach($observer);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">notify</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">foreach</span> (<span class="keyword">$this</span>-&gt;observers <span class="keyword">as</span> $observer) &#123;</span><br><span class="line">            $observer-&gt;update(<span class="keyword">$this</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$observer1 = <span class="keyword">new</span> MyObserver1();</span><br><span class="line">$observer2 = <span class="keyword">new</span> MyObserver2();</span><br><span class="line"></span><br><span class="line">$subject = <span class="keyword">new</span> MySubject(<span class="string">"test"</span>);</span><br><span class="line"></span><br><span class="line">$subject-&gt;attach($observer1);</span><br><span class="line">$subject-&gt;attach($observer2);</span><br><span class="line">$subject-&gt;notify();</span><br><span class="line"></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">输出:</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">MyObserver1 - test</span></span><br><span class="line"><span class="comment">MyObserver2 - test</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">$subject-&gt;detach($observer2);</span><br><span class="line">$subject-&gt;notify();</span><br><span class="line"></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">输出:</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">MyObserver1 - test</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>注明：本文转自<a href="https://laravel-china.org/articles/6978/a-summary-of-the-observers-pattern" target="_blank" rel="noopener">Laravel-China</a>、<a href="https://laravel-china.org/users/16711" target="_blank" rel="noopener">Jeffrey00</a>。</p>
 </blockquote>
 
       
@@ -191,7 +201,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">LINUX</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">PHP</a>
         		</li>
       		
 		</ul>
@@ -203,7 +213,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/LINUX//" class="article-tag-list-link color1">LINUX</a>
+        			<a href="/categories/PHP//" class="article-tag-list-link color4">PHP</a>
         		</li>
       		
 		</ul>
@@ -258,7 +268,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://ygnotes.com/2018/02/12/Linux常见面试题/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://ygnotes.com/2018/02/14/观察者模式的总结/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -408,19 +418,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Laravel</a>
+                <a href="javascript:void(0)" class="js-tag color1">MYSQL</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">转载</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">LINUX</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GIT</a>
+                <a href="javascript:void(0)" class="js-tag color3">其他</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -428,7 +430,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MYSQL</a>
+                <a href="javascript:void(0)" class="js-tag color3">Laravel</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">GIT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">转载</a>
               </li>
             
             <div class="clearfix"></div>

@@ -6,21 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://ygnotes.com">
-  <title>在 Laravel 项目中创建属于你自己的辅助方法（转载） | David的博客、web开发者、代码搬运工</title>
+  <title>在 Laravel 项目中创建属于你自己的辅助方法 | David的博客、web开发者、代码搬运工</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="注明：本文转自Laravel-China、Summer。  这是一篇社区协同翻译的文章，已完成翻译，更多信息请点击 协同翻译介绍。">
+  <meta name="description" content="这是一篇社区协同翻译的文章，已完成翻译，更多信息请点击 协同翻译介绍。">
 <meta name="keywords" content="PHP,Laravel,转载">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在 Laravel 项目中创建属于你自己的辅助方法（转载）">
+<meta property="og:title" content="在 Laravel 项目中创建属于你自己的辅助方法">
 <meta property="og:url" content="http://ygnotes.com/2018/02/12/在-Laravel-项目中创建属于你自己的辅助方法/index.html">
 <meta property="og:site_name" content="David的博客、web开发者、代码搬运工">
-<meta property="og:description" content="注明：本文转自Laravel-China、Summer。  这是一篇社区协同翻译的文章，已完成翻译，更多信息请点击 协同翻译介绍。">
+<meta property="og:description" content="这是一篇社区协同翻译的文章，已完成翻译，更多信息请点击 协同翻译介绍。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://dn-phphub.qbox.me/uploads/images/201801/29/1/UJ2FXDsehS.png">
-<meta property="og:updated_time" content="2018-02-12T06:39:31.929Z">
+<meta property="og:updated_time" content="2018-02-14T06:20:41.395Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="在 Laravel 项目中创建属于你自己的辅助方法（转载）">
-<meta name="twitter:description" content="注明：本文转自Laravel-China、Summer。  这是一篇社区协同翻译的文章，已完成翻译，更多信息请点击 协同翻译介绍。">
+<meta name="twitter:title" content="在 Laravel 项目中创建属于你自己的辅助方法">
+<meta name="twitter:description" content="这是一篇社区协同翻译的文章，已完成翻译，更多信息请点击 协同翻译介绍。">
 <meta name="twitter:image" content="https://dn-phphub.qbox.me/uploads/images/201801/29/1/UJ2FXDsehS.png">
   
     <link rel="alternative" href="/atom.xml" title="David的博客、web开发者、代码搬运工" type="application/atom+xml">
@@ -164,7 +164,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      在 Laravel 项目中创建属于你自己的辅助方法（转载）
+      在 Laravel 项目中创建属于你自己的辅助方法
     </h1>
   
 
@@ -177,10 +177,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>注明：本文转自<a href="https://laravel-china.org/topics/8041/create-an-auxiliary-method-of-your-own-in-the-laravel-project" target="_blank" rel="noopener">Laravel-China</a>、<a href="https://laravel-china.org/users/1" target="_blank" rel="noopener">Summer</a>。</p>
-</blockquote>
-<p>这是一篇社区协同翻译的文章，已完成翻译，更多信息请点击 <a href="https://laravel-china.org/topics/7440/community-translation-function-online-star2" target="_blank" rel="noopener">协同翻译介绍</a>。</p>
+        <p>这是一篇社区协同翻译的文章，已完成翻译，更多信息请点击 <a href="https://laravel-china.org/topics/7440/community-translation-function-online-star2" target="_blank" rel="noopener">协同翻译介绍</a>。</p>
 <hr>
 <a id="more"></a>
 <p><img src="https://dn-phphub.qbox.me/uploads/images/201801/29/1/UJ2FXDsehS.png" alt="file"></p>
@@ -208,7 +205,7 @@
 <h3 id="Packages"><a href="#Packages" class="headerlink" title="Packages"></a>Packages</h3><p>你的Composer包也可以使用一个辅助文件来帮你在项目里使用任何你想要的辅助函数。<br>你将在 <code>composer.json</code> 文件采用相同的方法, 定义一个 <code>files</code> 键在你的辅助文件的一个数组。<br>添加<code>function_exists()</code> 来检查你的辅助函数是必要的，所以使用了你的代码的项目不会因命名冲突而中断。<br>你应该选择正确的在你包里是唯一的名字，并且如果你担心的方法名太普遍，可以考虑使用短前缀。</p>
 <h3 id="了解更多"><a href="#了解更多" class="headerlink" title="了解更多"></a>了解更多</h3><p>查看 Composer的 <a href="https://getcomposer.org/doc/04-schema.md#autoload" target="_blank" rel="noopener">autoloading</a> 文档来了解更多关于引入文件,以及关于自动加载类的一些基本信息.<br>另一个推荐的资源是学习框架中所有适用的 <a href="https://d.laravel-china.org/docs/5.5/helpers" target="_blank" rel="noopener">Laravel helpers</a> 并且通过查看 <a href="https://github.com/laravel/framework/blob/5.5/src/Illuminate/Foundation/helpers.php" target="_blank" rel="noopener">Illuminate\Foundation helpers</a> 和 <a href="https://github.com/laravel/framework/blob/5.5/src/Illuminate/Support/helpers.php" target="_blank" rel="noopener">Illuminate\Support helpers</a> 的源码学习他们是如何工作的.</p>
 <blockquote>
-<p>本文中的所有译文仅用于学习和交流目的，转载请务必注明文章译者、出处、和本文链接<br>我们的翻译工作遵照 <a href="http://zh.wikipedia.org/wiki/Wikipedia:CC" target="_blank" rel="noopener">CC 协议</a> ，如果我们的工作有侵犯到您的权益，请及时联系我们。</p>
+<p>注明：本文转自<a href="https://laravel-china.org/topics/8041/create-an-auxiliary-method-of-your-own-in-the-laravel-project" target="_blank" rel="noopener">Laravel-China</a>、<a href="https://laravel-china.org/users/1" target="_blank" rel="noopener">Summer</a>。</p>
 </blockquote>
 
       
@@ -320,14 +317,14 @@
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          MySQL索引背后的数据结构及算法原理（转载）
+          MySQL索引背后的数据结构及算法原理
         
       </div>
     </a>
   
   
     <a href="/2018/02/11/PHP-代码简洁之道/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">PHP 代码简洁之道(PHP Clean Code)（转载）</div>
+      <div class="article-nav-title">PHP 代码简洁之道(PHP Clean Code)</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -461,19 +458,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Laravel</a>
+                <a href="javascript:void(0)" class="js-tag color1">MYSQL</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">转载</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">LINUX</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GIT</a>
+                <a href="javascript:void(0)" class="js-tag color3">其他</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -481,7 +470,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MYSQL</a>
+                <a href="javascript:void(0)" class="js-tag color3">Laravel</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">GIT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">转载</a>
               </li>
             
             <div class="clearfix"></div>

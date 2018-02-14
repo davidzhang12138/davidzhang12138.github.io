@@ -6,15 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://ygnotes.com">
-  <title>MySQL索引背后的数据结构及算法原理（转载） | David的博客、web开发者、代码搬运工</title>
+  <title>MySQL索引背后的数据结构及算法原理 | David的博客、web开发者、代码搬运工</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="注明：本文转自CodingLabs、张洋。  摘要本文以MySQL数据库为研究对象，讨论与数据库索引相关的一些话题。特别需要说明的是，MySQL支持诸多存储引擎，而各种存储引擎对索引的支持也各不相同，因此MySQL数据库支持多种索引类型，如BTree索引，哈希索引，全文索引等等。为了避免混乱，本文将只关注于BTree索引，因为这是平常使用MySQL时主要打交道的索引，至于哈希索引和全文索引本文暂">
-<meta name="keywords" content="转载,MYSQL">
+  <meta name="description" content="摘要本文以MySQL数据库为研究对象，讨论与数据库索引相关的一些话题。特别需要说明的是，MySQL支持诸多存储引擎，而各种存储引擎对索引的支持也各不相同，因此MySQL数据库支持多种索引类型，如BTree索引，哈希索引，全文索引等等。为了避免混乱，本文将只关注于BTree索引，因为这是平常使用MySQL时主要打交道的索引，至于哈希索引和全文索引本文暂不讨论。文章主要内容分为三个部分。第一部分主要从">
+<meta name="keywords" content="MYSQL">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MySQL索引背后的数据结构及算法原理（转载）">
+<meta property="og:title" content="MySQL索引背后的数据结构及算法原理">
 <meta property="og:url" content="http://ygnotes.com/2018/02/12/MySQL索引背后的数据结构及算法原理/index.html">
 <meta property="og:site_name" content="David的博客、web开发者、代码搬运工">
-<meta property="og:description" content="注明：本文转自CodingLabs、张洋。  摘要本文以MySQL数据库为研究对象，讨论与数据库索引相关的一些话题。特别需要说明的是，MySQL支持诸多存储引擎，而各种存储引擎对索引的支持也各不相同，因此MySQL数据库支持多种索引类型，如BTree索引，哈希索引，全文索引等等。为了避免混乱，本文将只关注于BTree索引，因为这是平常使用MySQL时主要打交道的索引，至于哈希索引和全文索引本文暂">
+<meta property="og:description" content="摘要本文以MySQL数据库为研究对象，讨论与数据库索引相关的一些话题。特别需要说明的是，MySQL支持诸多存储引擎，而各种存储引擎对索引的支持也各不相同，因此MySQL数据库支持多种索引类型，如BTree索引，哈希索引，全文索引等等。为了避免混乱，本文将只关注于BTree索引，因为这是平常使用MySQL时主要打交道的索引，至于哈希索引和全文索引本文暂不讨论。文章主要内容分为三个部分。第一部分主要从">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://blog.codinglabs.org/uploads/pictures/theory-of-mysql-index/1.png">
 <meta property="og:image" content="http://blog.codinglabs.org/uploads/pictures/theory-of-mysql-index/2.png">
@@ -30,10 +30,10 @@
 <meta property="og:image" content="http://blog.codinglabs.org/uploads/pictures/theory-of-mysql-index/12.png">
 <meta property="og:image" content="http://blog.codinglabs.org/uploads/pictures/theory-of-mysql-index/13.png">
 <meta property="og:image" content="http://blog.codinglabs.org/uploads/pictures/theory-of-mysql-index/14.png">
-<meta property="og:updated_time" content="2018-02-12T07:48:20.731Z">
+<meta property="og:updated_time" content="2018-02-14T06:25:02.248Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MySQL索引背后的数据结构及算法原理（转载）">
-<meta name="twitter:description" content="注明：本文转自CodingLabs、张洋。  摘要本文以MySQL数据库为研究对象，讨论与数据库索引相关的一些话题。特别需要说明的是，MySQL支持诸多存储引擎，而各种存储引擎对索引的支持也各不相同，因此MySQL数据库支持多种索引类型，如BTree索引，哈希索引，全文索引等等。为了避免混乱，本文将只关注于BTree索引，因为这是平常使用MySQL时主要打交道的索引，至于哈希索引和全文索引本文暂">
+<meta name="twitter:title" content="MySQL索引背后的数据结构及算法原理">
+<meta name="twitter:description" content="摘要本文以MySQL数据库为研究对象，讨论与数据库索引相关的一些话题。特别需要说明的是，MySQL支持诸多存储引擎，而各种存储引擎对索引的支持也各不相同，因此MySQL数据库支持多种索引类型，如BTree索引，哈希索引，全文索引等等。为了避免混乱，本文将只关注于BTree索引，因为这是平常使用MySQL时主要打交道的索引，至于哈希索引和全文索引本文暂不讨论。文章主要内容分为三个部分。第一部分主要从">
 <meta name="twitter:image" content="http://blog.codinglabs.org/uploads/pictures/theory-of-mysql-index/1.png">
   
     <link rel="alternative" href="/atom.xml" title="David的博客、web开发者、代码搬运工" type="application/atom+xml">
@@ -177,7 +177,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      MySQL索引背后的数据结构及算法原理（转载）
+      MySQL索引背后的数据结构及算法原理
     </h1>
   
 
@@ -190,10 +190,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>注明：本文转自<a href="http://blog.codinglabs.org/articles/theory-of-mysql-index.html" target="_blank" rel="noopener">CodingLabs</a>、<a href="http://blog.codinglabs.org/" target="_blank" rel="noopener">张洋</a>。</p>
-</blockquote>
-<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>本文以MySQL数据库为研究对象，讨论与数据库索引相关的一些话题。特别需要说明的是，MySQL支持诸多存储引擎，而各种存储引擎对索引的支持也各不相同，因此MySQL数据库支持多种索引类型，如BTree索引，哈希索引，全文索引等等。<br>为了避免混乱，本文将只关注于BTree索引，因为这是平常使用MySQL时主要打交道的索引，至于哈希索引和全文索引本文暂不讨论。<br>文章主要内容分为三个部分。<br>第一部分主要从数据结构及算法理论层面讨论MySQL数据库索引的数理基础。<br>第二部分结合MySQL数据库中MyISAM和InnoDB数据存储引擎中索引的架构实现讨论聚集索引、非聚集索引及覆盖索引等话题。<br>第三部分根据上面的理论基础，讨论MySQL中高性能使用索引的策略。<br><a id="more"></a></p>
+        <h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>本文以MySQL数据库为研究对象，讨论与数据库索引相关的一些话题。特别需要说明的是，MySQL支持诸多存储引擎，而各种存储引擎对索引的支持也各不相同，因此MySQL数据库支持多种索引类型，如BTree索引，哈希索引，全文索引等等。<br>为了避免混乱，本文将只关注于BTree索引，因为这是平常使用MySQL时主要打交道的索引，至于哈希索引和全文索引本文暂不讨论。<br>文章主要内容分为三个部分。<br>第一部分主要从数据结构及算法理论层面讨论MySQL数据库索引的数理基础。<br>第二部分结合MySQL数据库中MyISAM和InnoDB数据存储引擎中索引的架构实现讨论聚集索引、非聚集索引及覆盖索引等话题。<br>第三部分根据上面的理论基础，讨论MySQL中高性能使用索引的策略。<br><a id="more"></a></p>
 <h1 id="数据结构及算法基础"><a href="#数据结构及算法基础" class="headerlink" title="数据结构及算法基础"></a>数据结构及算法基础</h1><h2 id="索引的本质"><a href="#索引的本质" class="headerlink" title="索引的本质"></a>索引的本质</h2><p>MySQL官方对索引的定义为：索引（Index）是帮助MySQL高效获取数据的数据结构。提取句子主干，就可以得到索引的本质：索引是数据结构。<br>我们知道，数据库查询是数据库的最主要功能之一。我们都希望查询数据的速度能尽可能的快，因此数据库系统的设计者会从查询算法的角度进行优化。<br>最基本的查询算法当然是 <a href="http://en.wikipedia.org/wiki/Linear_search" target="_blank" rel="noopener">顺序查找</a>（linear search），这种复杂度为O(n)的算法在数据量很大时显然是糟糕的，好在计算机科学的发展提供了很多更优秀的查找算法，<br>例如 <a href="http://en.wikipedia.org/wiki/Binary_search_algorithm" target="_blank" rel="noopener">二分查找</a>（binary search）、<a href="http://en.wikipedia.org/wiki/Binary_search_tree" target="_blank" rel="noopener">二叉树查找</a>（binary tree search）等。<br>如果稍微分析一下会发现，每种查找算法都只能应用于特定的数据结构之上，例如二分查找要求被检索数据有序，而二叉树查找只能应用于 <a href="http://en.wikipedia.org/wiki/Binary_search_tree" target="_blank" rel="noopener">二叉查找树</a> 上，<br>但是数据本身的组织结构不可能完全满足各种数据结构（例如，理论上不可能同时将两列都按顺序进行组织），所以，在数据之外，数据库系统还维护着满足特定查找算法的数据结构，这些数据结构以某种方式引用（指向）数据，这样就可以在这些数据结构上实现高级查找算法。这种数据结构，就是索引。<br>看一个例子：<br><img src="http://blog.codinglabs.org/uploads/pictures/theory-of-mysql-index/1.png" alt="图1"><br>图1展示了一种可能的索引方式。左边是数据表，一共有两列七条记录，最左边的是数据记录的物理地址（注意逻辑上相邻的记录在磁盘上也并不是一定物理相邻的）。<br>为了加快Col2的查找，可以维护一个右边所示的二叉查找树，每个节点分别包含索引键值和一个指向对应数据记录物理地址的指针，这样就可以运用二叉查找在(O(log_2n))的复杂度内获取到相应数据。<br>虽然这是一个货真价实的索引，但是实际的数据库系统几乎没有使用二叉查找树或其进化品种 <a href="http://en.wikipedia.org/wiki/Red-black_tree" target="_blank" rel="noopener">红黑树</a>（red-black tree）实现的，原因会在下文介绍。</p>
 <h2 id="B-Tree和B-Tree"><a href="#B-Tree和B-Tree" class="headerlink" title="B-Tree和B+Tree"></a>B-Tree和B+Tree</h2><p>目前大部分数据库系统及文件系统都采用B-Tree或其变种B+Tree作为索引结构，在本文的下一节会结合存储器原理及计算机存取原理讨论为什么B-Tree和B+Tree在被如此广泛用于索引，这一节先单纯从数据结构角度描述它们。</p>
 <h3 id="B-Tree"><a href="#B-Tree" class="headerlink" title="B-Tree"></a>B-Tree</h3><p>为了描述B-Tree，首先定义一条数据记录为一个二元组[key, data]，key为记录的键值，对于不同数据记录，key是互不相同的；data为数据记录除key外的数据。那么B-Tree是满足下列条件的数据结构：<br>d为大于1的一个正整数，称为B-Tree的度。<br>h为一个正整数，称为B-Tree的高度。<br>每个非叶子节点由n-1个key和n个指针组成，其中d&lt;=n&lt;=2d。<br>每个叶子节点最少包含一个key和两个指针，最多包含2d-1个key和2d个指针，叶节点的指针均为null 。<br>所有叶节点具有相同的深度，等于树高h。<br>key和指针互相间隔，节点两端是指针。<br>一个节点中的key从左到右非递减排列。<br>所有节点组成树结构。<br>每个指针要么为null，要么指向另外一个节点。<br>如果某个指针在节点node最左边且不为null，则其指向节点的所有key小于(v(key_1))，其中(v(key_1))为node的第一个key的值。<br>如果某个指针在节点node最右边且不为null，则其指向节点的所有key大于(v(key_m))，其中(v(key_m))为node的最后一个key的值。<br>如果某个指针在节点node的左右相邻key分别是(key<em>i)和(key</em>{i+1})且不为null，则其指向节点的所有key小于(v(key_{i+1}))且大于(v(key_i))。<br>图2是一个d=2的B-Tree示意图。<br><img src="http://blog.codinglabs.org/uploads/pictures/theory-of-mysql-index/2.png" alt="图2"><br>由于B-Tree的特性，在B-Tree中按key检索数据的算法非常直观：首先从根节点进行二分查找，如果找到则返回对应节点的data，<br>否则对相应区间的指针指向的节点递归进行查找，直到找到节点或找到null指针，前者查找成功，后者查找失败。B-Tree上查找算法的伪代码如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">BTree_Search(node, key) &#123;</span><br><span class="line">    <span class="keyword">if</span>(node == null) <span class="keyword">return</span> null;</span><br><span class="line">    foreach(node.key)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(node.key[i] == key) <span class="keyword">return</span> node.data[i];</span><br><span class="line">            <span class="keyword">if</span>(node.key[i] &amp;gt; key) <span class="keyword">return</span> BTree_Search(point[i]-&amp;gt;node);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> BTree_Search(point[i+<span class="number">1</span>]-&amp;gt;node);</span><br><span class="line">&#125;</span><br><span class="line">data = BTree_Search(root, my_key);</span><br></pre></td></tr></table></figure></p>
@@ -254,6 +251,9 @@
 <li>Codd, E. F. (1970). “A relational model of data for large shared data banks”. Communications of the ACM, , Vol. 13, No. 6, pp. 377-387</li>
 <li>MySQL5.1参考手册 - <a href="http://dev.mysql.com/doc/refman/5.1/zh/index.html" target="_blank" rel="noopener">http://dev.mysql.com/doc/refman/5.1/zh/index.html</a></li>
 </ol>
+<blockquote>
+<p>注明：本文转自<a href="http://blog.codinglabs.org/articles/theory-of-mysql-index.html" target="_blank" rel="noopener">CodingLabs</a>、<a href="http://blog.codinglabs.org/" target="_blank" rel="noopener">张洋</a>。</p>
+</blockquote>
 
       
 
@@ -266,10 +266,6 @@
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">转载</a>
-        		</li>
-      		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MYSQL</a>
         		</li>
@@ -363,7 +359,7 @@
   
   
     <a href="/2018/02/12/在-Laravel-项目中创建属于你自己的辅助方法/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">在 Laravel 项目中创建属于你自己的辅助方法（转载）</div>
+      <div class="article-nav-title">在 Laravel 项目中创建属于你自己的辅助方法</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -497,19 +493,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Laravel</a>
+                <a href="javascript:void(0)" class="js-tag color1">MYSQL</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">转载</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">LINUX</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GIT</a>
+                <a href="javascript:void(0)" class="js-tag color3">其他</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -517,7 +505,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MYSQL</a>
+                <a href="javascript:void(0)" class="js-tag color3">Laravel</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">GIT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">转载</a>
               </li>
             
             <div class="clearfix"></div>

@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://ygnotes.com">
-  <title>PHP 代码简洁之道(PHP Clean Code)（转载） | David的博客、web开发者、代码搬运工</title>
+  <title>PHP 代码简洁之道(PHP Clean Code) | David的博客、web开发者、代码搬运工</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="注明：本文转自Laravel-China、Summer。  这是一篇社区协同翻译的文章，已完成翻译，更多信息请点击协同翻译介绍 介绍Robert C.Martin’s 的 软件工程师准则 Clean Code 同样适用于PHP。它并不是一个编码风格指南，它指导我们用PHP写出具有可读性，可复用性且可分解的代码。并非所有的准则都必须严格遵守，甚至一些已经成为普遍的约定。这仅仅作为指导方针，其中许多">
-<meta name="keywords" content="PHP,转载">
+  <meta name="description" content="介绍Robert C.Martin’s 的 软件工程师准则 Clean Code 同样适用于PHP。它并不是一个编码风格指南，它指导我们用PHP写出具有可读性，可复用性且可分解的代码。并非所有的准则都必须严格遵守，甚至一些已经成为普遍的约定。这仅仅作为指导方针，其中许多都是 Clean Code 作者们多年来的经验。">
+<meta name="keywords" content="PHP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PHP 代码简洁之道(PHP Clean Code)（转载）">
+<meta property="og:title" content="PHP 代码简洁之道(PHP Clean Code)">
 <meta property="og:url" content="http://ygnotes.com/2018/02/11/PHP-代码简洁之道/index.html">
 <meta property="og:site_name" content="David的博客、web开发者、代码搬运工">
-<meta property="og:description" content="注明：本文转自Laravel-China、Summer。  这是一篇社区协同翻译的文章，已完成翻译，更多信息请点击协同翻译介绍 介绍Robert C.Martin’s 的 软件工程师准则 Clean Code 同样适用于PHP。它并不是一个编码风格指南，它指导我们用PHP写出具有可读性，可复用性且可分解的代码。并非所有的准则都必须严格遵守，甚至一些已经成为普遍的约定。这仅仅作为指导方针，其中许多">
+<meta property="og:description" content="介绍Robert C.Martin’s 的 软件工程师准则 Clean Code 同样适用于PHP。它并不是一个编码风格指南，它指导我们用PHP写出具有可读性，可复用性且可分解的代码。并非所有的准则都必须严格遵守，甚至一些已经成为普遍的约定。这仅仅作为指导方针，其中许多都是 Clean Code 作者们多年来的经验。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-02-12T03:16:39.869Z">
+<meta property="og:updated_time" content="2018-02-14T06:24:13.707Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PHP 代码简洁之道(PHP Clean Code)（转载）">
-<meta name="twitter:description" content="注明：本文转自Laravel-China、Summer。  这是一篇社区协同翻译的文章，已完成翻译，更多信息请点击协同翻译介绍 介绍Robert C.Martin’s 的 软件工程师准则 Clean Code 同样适用于PHP。它并不是一个编码风格指南，它指导我们用PHP写出具有可读性，可复用性且可分解的代码。并非所有的准则都必须严格遵守，甚至一些已经成为普遍的约定。这仅仅作为指导方针，其中许多">
+<meta name="twitter:title" content="PHP 代码简洁之道(PHP Clean Code)">
+<meta name="twitter:description" content="介绍Robert C.Martin’s 的 软件工程师准则 Clean Code 同样适用于PHP。它并不是一个编码风格指南，它指导我们用PHP写出具有可读性，可复用性且可分解的代码。并非所有的准则都必须严格遵守，甚至一些已经成为普遍的约定。这仅仅作为指导方针，其中许多都是 Clean Code 作者们多年来的经验。">
   
     <link rel="alternative" href="/atom.xml" title="David的博客、web开发者、代码搬运工" type="application/atom+xml">
   
@@ -162,7 +162,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      PHP 代码简洁之道(PHP Clean Code)（转载）
+      PHP 代码简洁之道(PHP Clean Code)
     </h1>
   
 
@@ -175,11 +175,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>注明：本文转自<a href="https://laravel-china.org/topics/7774/the-conciseness-of-the-php-code-php-clean-code" target="_blank" rel="noopener">Laravel-China</a>、<a href="https://laravel-china.org/users/1" target="_blank" rel="noopener">Summer</a>。</p>
-</blockquote>
-<p>这是一篇社区协同翻译的文章，已完成翻译，更多信息请点击<a href="https://laravel-china.org/topics/7440/community-translation-function-online-star2" target="_blank" rel="noopener">协同翻译介绍</a></p>
-<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Robert C.Martin’s 的 软件工程师准则 <a href="https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882" target="_blank" rel="noopener">Clean Code</a> 同样适用于PHP。它并不是一个编码风格指南，它指导我们用PHP写出具有可读性，可复用性且可分解的代码。<br>并非所有的准则都必须严格遵守，甚至一些已经成为普遍的约定。这仅仅作为指导方针，其中许多都是 <em>Clean Code</em> 作者们多年来的经验。<br><a id="more"></a></p>
+        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Robert C.Martin’s 的 软件工程师准则 <a href="https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882" target="_blank" rel="noopener">Clean Code</a> 同样适用于PHP。它并不是一个编码风格指南，它指导我们用PHP写出具有可读性，可复用性且可分解的代码。<br>并非所有的准则都必须严格遵守，甚至一些已经成为普遍的约定。这仅仅作为指导方针，其中许多都是 <em>Clean Code</em> 作者们多年来的经验。<br><a id="more"></a></p>
 <blockquote>
 <p>灵感来自于 <a href="https://github.com/ryanmcdermott/clean-code-javascript" target="_blank" rel="noopener">clean-code-javascript</a></p>
 </blockquote>
@@ -311,7 +307,7 @@
 <p><strong>好的：</strong><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showList</span><span class="params">(array $employees)</span>: <span class="title">void</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">foreach</span> ($employees <span class="keyword">as</span> $employee) &#123;</span><br><span class="line">        $expectedSalary = $employee-&gt;calculateExpectedSalary();</span><br><span class="line">        $experience = $employee-&gt;getExperience();</span><br><span class="line">        $githubLink = $employee-&gt;getGithubLink();</span><br><span class="line">        $data = [</span><br><span class="line">            $expectedSalary,</span><br><span class="line">            $experience,</span><br><span class="line">            $githubLink</span><br><span class="line">        ];</span><br><span class="line"></span><br><span class="line">        render($data);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p><strong>非常好：</strong><br>最好让你的代码紧凑一点。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showList</span><span class="params">(array $employees)</span>: <span class="title">void</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">foreach</span> ($employees <span class="keyword">as</span> $employee) &#123;</span><br><span class="line">        render([</span><br><span class="line">            $employee-&gt;calculateExpectedSalary(),</span><br><span class="line">            $employee-&gt;getExperience(),</span><br><span class="line">            $employee-&gt;getGithubLink()</span><br><span class="line">        ]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <blockquote>
-<p>本文中的所有译文仅用于学习和交流目的，转载请务必注明文章译者、出处、和本文链接 <br><br>我们的翻译工作遵照 <a href="http://zh.wikipedia.org/wiki/Wikipedia:CC" target="_blank" rel="noopener">CC 协议</a>，如果我们的工作有侵犯到您的权益，请及时联系我们。 </p>
+<p>注明：本文转自<a href="https://laravel-china.org/topics/7774/the-conciseness-of-the-php-code-php-clean-code" target="_blank" rel="noopener">Laravel-China</a>、<a href="https://laravel-china.org/users/1" target="_blank" rel="noopener">Summer</a>。</p>
 </blockquote>
 
       
@@ -327,10 +323,6 @@
 			 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">PHP</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">转载</a>
         		</li>
       		
 		</ul>
@@ -415,14 +407,14 @@
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          在 Laravel 项目中创建属于你自己的辅助方法（转载）
+          在 Laravel 项目中创建属于你自己的辅助方法
         
       </div>
     </a>
   
   
     <a href="/2018/02/11/手动实现-DI-容器/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">手动实现 DI 容器（转载）</div>
+      <div class="article-nav-title">手动实现 DI 容器</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -556,19 +548,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Laravel</a>
+                <a href="javascript:void(0)" class="js-tag color1">MYSQL</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">转载</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">LINUX</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GIT</a>
+                <a href="javascript:void(0)" class="js-tag color3">其他</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -576,7 +560,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MYSQL</a>
+                <a href="javascript:void(0)" class="js-tag color3">Laravel</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">GIT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">转载</a>
               </li>
             
             <div class="clearfix"></div>

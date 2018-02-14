@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://ygnotes.com">
-  <title>手动实现 DI 容器（转载） | David的博客、web开发者、代码搬运工</title>
+  <title>手动实现 DI 容器 | David的博客、web开发者、代码搬运工</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="注明：本文转自Laravel-China、zhengzean。  关于依赖注入相信大家应该都经常接触或者至少有所耳闻，比较知名的框架都支持依赖注入，比如Java的Spring，PHP的Laravel、Symfony等。现在我开始手动实现一个简陋的DI容器吧。 由开车开始先开个车，为大家举个栗子：">
-<meta name="keywords" content="PHP,Laravel,转载">
+  <meta name="description" content="关于依赖注入相信大家应该都经常接触或者至少有所耳闻，比较知名的框架都支持依赖注入，比如Java的Spring，PHP的Laravel、Symfony等。现在我开始手动实现一个简陋的DI容器吧。 由开车开始先开个车，为大家举个栗子：">
+<meta name="keywords" content="PHP,Laravel">
 <meta property="og:type" content="article">
-<meta property="og:title" content="手动实现 DI 容器（转载）">
+<meta property="og:title" content="手动实现 DI 容器">
 <meta property="og:url" content="http://ygnotes.com/2018/02/11/手动实现-DI-容器/index.html">
 <meta property="og:site_name" content="David的博客、web开发者、代码搬运工">
-<meta property="og:description" content="注明：本文转自Laravel-China、zhengzean。  关于依赖注入相信大家应该都经常接触或者至少有所耳闻，比较知名的框架都支持依赖注入，比如Java的Spring，PHP的Laravel、Symfony等。现在我开始手动实现一个简陋的DI容器吧。 由开车开始先开个车，为大家举个栗子：">
+<meta property="og:description" content="关于依赖注入相信大家应该都经常接触或者至少有所耳闻，比较知名的框架都支持依赖注入，比如Java的Spring，PHP的Laravel、Symfony等。现在我开始手动实现一个简陋的DI容器吧。 由开车开始先开个车，为大家举个栗子：">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-02-12T03:16:31.798Z">
+<meta property="og:updated_time" content="2018-02-14T06:24:36.184Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="手动实现 DI 容器（转载）">
-<meta name="twitter:description" content="注明：本文转自Laravel-China、zhengzean。  关于依赖注入相信大家应该都经常接触或者至少有所耳闻，比较知名的框架都支持依赖注入，比如Java的Spring，PHP的Laravel、Symfony等。现在我开始手动实现一个简陋的DI容器吧。 由开车开始先开个车，为大家举个栗子：">
+<meta name="twitter:title" content="手动实现 DI 容器">
+<meta name="twitter:description" content="关于依赖注入相信大家应该都经常接触或者至少有所耳闻，比较知名的框架都支持依赖注入，比如Java的Spring，PHP的Laravel、Symfony等。现在我开始手动实现一个简陋的DI容器吧。 由开车开始先开个车，为大家举个栗子：">
   
     <link rel="alternative" href="/atom.xml" title="David的博客、web开发者、代码搬运工" type="application/atom+xml">
   
@@ -162,7 +162,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      手动实现 DI 容器（转载）
+      手动实现 DI 容器
     </h1>
   
 
@@ -175,10 +175,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>注明：本文转自<a href="https://laravel-china.org/articles/7573/manual-implementation-of-the-di-container" target="_blank" rel="noopener">Laravel-China</a>、<a href="https://laravel-china.org/users/18655" target="_blank" rel="noopener">zhengzean</a>。</p>
-</blockquote>
-<p>关于依赖注入相信大家应该都经常接触或者至少有所耳闻，比较知名的框架都支持依赖注入，比如Java的Spring，PHP的Laravel、Symfony等。现在我开始手动实现一个简陋的DI容器吧。</p>
+        <p>关于依赖注入相信大家应该都经常接触或者至少有所耳闻，比较知名的框架都支持依赖注入，比如Java的Spring，PHP的Laravel、Symfony等。现在我开始手动实现一个简陋的DI容器吧。</p>
 <h2 id="由开车开始"><a href="#由开车开始" class="headerlink" title="由开车开始"></a>由开车开始</h2><p>先开个车，为大家举个栗子：<br><a id="more"></a><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Driver</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">drive</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $car = <span class="keyword">new</span> Car();</span><br><span class="line">        <span class="keyword">echo</span> ‘老司机正在驾驶’, $car-&gt;getCar(), PHP_EOL;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> $name = ‘普通汽车’;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getCar</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>有两个类，Driver和Car，老司机Driver有个方法driver，在调用的时候首先得整辆车$car，然后发车。<br>大多数同学都写过这样或者类似的代码，这样的代码单看没啥毛病，挺正常的。但是，如果我要换辆车，开普通车撩不到妹。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Benz</span> <span class="keyword">extends</span> <span class="title">Car</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> $name = ‘奔驰’;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>这时候就需要做一个比较恶心的操作了，得改老司机的代码了。（老司机：我做错了什么？换辆车还得让我重学驾照……）。<br>因此我们需要把让Car为外界注入，将Driver和Car解耦，不是老司机自己开车的时候还得自己去造车。于是就有了下面的结果<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Driver</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> $car;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">(Car $car)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;car = $car;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">drive</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">'老司机正在驾驶'</span>, <span class="keyword">$this</span>-&gt;car-&gt;getCar(), PHP_EOL;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -201,6 +198,9 @@
 <p>现在借助容器我们写一下上面的代码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$driver = $app-&gt;get(Driver::class);</span><br><span class="line">$driver-&gt;drive();</span><br><span class="line"></span><br><span class="line"><span class="comment">//output:老司机正在驾驶普通汽车</span></span><br></pre></td></tr></table></figure></p>
 <p>就这么简单，老司机就能发车。这里默认注入的是Car的实例，如果需要开奔驰，那只需要这样：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$benz = $app-&gt;get(Benz::class);</span><br><span class="line">$driver = $app-&gt;get(Driver::class, $benz);</span><br><span class="line">$driver-&gt;drive();</span><br><span class="line"></span><br><span class="line"><span class="comment">//output:老司机正在驾驶奔驰</span></span><br></pre></td></tr></table></figure></p>
 <p>按照PSR-11的要求，依赖注入容器需要实现Psr\Container\ContainerInterface接口，这里只是演示并未去实现，<br>因为那需要引入Psr依赖库，比较麻烦，其实也很简单，只是多了几个方法，有兴趣的可以自己去了解下PSR-11的要求(<a href="https://github.com/container-interop/fig-standards/blob/master/proposed/container.md" target="_blank" rel="noopener">传送门</a>)<br>这里只是实现了一个非常简陋的DI容器，实际中还需要考虑很多，而且这里的容器功能上还很简陋。还有一些坑没处理，比如出现循环依赖怎么处理、延迟加载的机制……<br>这里只是我周末闲暇练手的一点记录，大家如果有兴趣可以阅读以下Laravel或者Symfony容器那块的源码，或者了解一下Spring的容器。后续有空我也会继续完善。</p>
+<blockquote>
+<p>注明：本文转自<a href="https://laravel-china.org/articles/7573/manual-implementation-of-the-di-container" target="_blank" rel="noopener">Laravel-China</a>、<a href="https://laravel-china.org/users/18655" target="_blank" rel="noopener">zhengzean</a>。</p>
+</blockquote>
 
       
 
@@ -219,10 +219,6 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Laravel</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">转载</a>
         		</li>
       		
 		</ul>
@@ -311,14 +307,14 @@
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          PHP 代码简洁之道(PHP Clean Code)（转载）
+          PHP 代码简洁之道(PHP Clean Code)
         
       </div>
     </a>
   
   
     <a href="/2018/01/28/nginx负载均衡配置/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">nginx负载均衡配置（转载）</div>
+      <div class="article-nav-title">nginx负载均衡配置</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -452,19 +448,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Laravel</a>
+                <a href="javascript:void(0)" class="js-tag color1">MYSQL</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">转载</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">LINUX</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GIT</a>
+                <a href="javascript:void(0)" class="js-tag color3">其他</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -472,7 +460,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MYSQL</a>
+                <a href="javascript:void(0)" class="js-tag color3">Laravel</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">GIT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">转载</a>
               </li>
             
             <div class="clearfix"></div>
