@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.4" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.0.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  
+  <meta name="keywords" content="PHP,Laravel,转载," />
+
+
+<meta name="description" content="前端篇 收集的前端面试题和答案 前端开发面试题 史上最全的web前端面试题汇总及答案 前端工程师手册 HTTP协议：工作原理 SSL/TLS协议运行机制的概述  后端篇 3年PHPer的面试总结 垃圾回收机制 S.O.L.I.D 面向对象设计 浅谈IOC–说清楚IOC是什么 Redis和Memcached的区别 MySQL索引原理及慢查询优化 分库分表的几种常见形式 大众点评订单系统分库分表实践">
+<meta name="keywords" content="PHP,Laravel,转载">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHPer 面试指南-扩展阅读资源整理">
+<meta property="og:url" content="https://ygnotes.com/2018/02/22/PHPer-面试指南-扩展阅读资源整理/index.html">
+<meta property="og:site_name" content="David的博客">
+<meta property="og:description" content="前端篇 收集的前端面试题和答案 前端开发面试题 史上最全的web前端面试题汇总及答案 前端工程师手册 HTTP协议：工作原理 SSL/TLS协议运行机制的概述  后端篇 3年PHPer的面试总结 垃圾回收机制 S.O.L.I.D 面向对象设计 浅谈IOC–说清楚IOC是什么 Redis和Memcached的区别 MySQL索引原理及慢查询优化 分库分表的几种常见形式 大众点评订单系统分库分表实践">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-02-22T05:42:47.599Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHPer 面试指南-扩展阅读资源整理">
+<meta name="twitter:description" content="前端篇 收集的前端面试题和答案 前端开发面试题 史上最全的web前端面试题汇总及答案 前端工程师手册 HTTP协议：工作原理 SSL/TLS协议运行机制的概述  后端篇 3年PHPer的面试总结 垃圾回收机制 S.O.L.I.D 面向对象设计 浅谈IOC–说清楚IOC是什么 Redis和Memcached的区别 MySQL索引原理及慢查询优化 分库分表的几种常见形式 大众点评订单系统分库分表实践">
+
+
+
+
+
+
+  <link rel="canonical" href="https://ygnotes.com/2018/02/22/PHPer-面试指南-扩展阅读资源整理/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+  <title>PHPer 面试指南-扩展阅读资源整理 | David的博客</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">David的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-php">
+          <a href="/categories/PHP" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-code"></i> <br />PHP</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-laravel">
+          <a href="/categories/Laravel" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-code"></i> <br />Laravel</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-mysql">
+          <a href="/categories/MYSQL" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-code"></i> <br />MYSQL</a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ygnotes.com/2018/02/22/PHPer-面试指南-扩展阅读资源整理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://dn-phphub.qbox.me/uploads/avatars/4549_1464574736.jpeg?imageView2/1/w/200/h/200">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">PHPer 面试指南-扩展阅读资源整理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-22T13:26:48+08:00">2018-02-22</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Laravel/" itemprop="url" rel="index"><span itemprop="name">Laravel</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Laravel/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2018/02/22/PHPer-面试指南-扩展阅读资源整理/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2018/02/22/PHPer-面试指南-扩展阅读资源整理/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="前端篇"><a href="#前端篇" class="headerlink" title="前端篇"></a>前端篇</h3><ul>
+<li><a href="https://github.com/qiu-deqing/FE-interview" target="_blank" rel="noopener">收集的前端面试题和答案</a></li>
+<li><a href="https://github.com/markyun/My-blog/tree/master/Front-end-Developer-Questions/Questions-and-Answers" target="_blank" rel="noopener">前端开发面试题</a></li>
+<li><a href="https://www.jianshu.com/p/2f7eb1ad7174" target="_blank" rel="noopener">史上最全的web前端面试题汇总及答案</a></li>
+<li><a href="https://leohxj.gitbooks.io/front-end-database/index.html" target="_blank" rel="noopener">前端工程师手册</a></li>
+<li><a href="http://blog.csdn.net/anndy_/article/details/77198883" target="_blank" rel="noopener">HTTP协议：工作原理</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html" target="_blank" rel="noopener">SSL/TLS协议运行机制的概述</a></li>
+</ul>
+<h3 id="后端篇"><a href="#后端篇" class="headerlink" title="后端篇"></a>后端篇</h3><ul>
+<li><a href="http://coffeephp.com/articles/4?utm_source=laravel-china.org" target="_blank" rel="noopener">3年PHPer的面试总结</a></li>
+<li><a href="http://docs.php.net/manual/zh/features.gc.performance-considerations.php" target="_blank" rel="noopener">垃圾回收机制</a></li>
+<li><a href="https://laravel-china.org/articles/4160/solid-object-oriented-design-and-programming-oodoop-notes?order_by=created_at&amp;" target="_blank" rel="noopener">S.O.L.I.D 面向对象设计</a></li>
+<li><a href="http://www.cnblogs.com/DebugLZQ/archive/2013/06/05/3107957.html" target="_blank" rel="noopener">浅谈IOC–说清楚IOC是什么</a></li>
+<li><a href="https://www.biaodianfu.com/redis-vs-memcached.html" target="_blank" rel="noopener">Redis和Memcached的区别</a></li>
+<li><a href="https://tech.meituan.com/mysql-index.html" target="_blank" rel="noopener">MySQL索引原理及慢查询优化</a></li>
+<li><a href="http://www.infoq.com/cn/articles/key-steps-and-likely-problems-of-split-table" target="_blank" rel="noopener">分库分表的几种常见形式</a></li>
+<li><a href="https://tech.meituan.com/dianping_order_db_sharding.html" target="_blank" rel="noopener">大众点评订单系统分库分表实践</a></li>
+<li><a href="http://onwise.xyz/2017/04/20/mysql-%E6%AD%BB%E9%94%81%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/" target="_blank" rel="noopener">MySQL 死锁问题及解决</a></li>
+<li><a href="https://www.kancloud.cn/kancloud/theory-of-mysql-index/41846" target="_blank" rel="noopener">MySQL索引背后的数据结构及算法原理</a></li>
+<li><a href="https://www.cnblogs.com/phpstudy2015-6/p/6771239.html" target="_blank" rel="noopener">CSRF攻击与防御</a></li>
+<li><a href="https://www.cnblogs.com/phpstudy2015-6/p/6767032.html#_label9" target="_blank" rel="noopener">XSS跨站脚本攻击</a></li>
+</ul>
+<h3 id="算法篇"><a href="#算法篇" class="headerlink" title="算法篇"></a>算法篇</h3><ul>
+<li><a href="https://www.cnblogs.com/wgq123/p/6529450.html" target="_blank" rel="noopener">PHP 冒泡排序</a></li>
+<li><a href="https://www.cnblogs.com/wangjingwangjing/p/5241486.html" target="_blank" rel="noopener">php实现快速排序</a></li>
+<li><a href="https://www.cnblogs.com/hellohell/p/5718175.html" target="_blank" rel="noopener">PHP实现各种经典算法</a></li>
+<li><a href="http://www.cnblogs.com/zswordsman/p/5824599.html" target="_blank" rel="noopener">PHP常见算法-面试篇</a></li>
+<li><a href="https://www.cnblogs.com/wangjingwangjing/p/5206711.html" target="_blank" rel="noopener">php实现二分查找法</a></li>
+</ul>
+<h3 id="Linux、Git-篇"><a href="#Linux、Git-篇" class="headerlink" title="Linux、Git 篇"></a>Linux、Git 篇</h3><ul>
+<li><a href="http://blog.csdn.net/u010842515/article/details/72732106" target="_blank" rel="noopener">linux面试常问命令</a></li>
+<li><a href="https://www.leolan.top/index.php/posts/36.html" target="_blank" rel="noopener">Linux常见面试题</a></li>
+<li><a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">Git教程</a></li>
+<li><a href="https://laravel-china.org/articles/6318/gitflow-workflow" target="_blank" rel="noopener">Gitflow 工作流</a></li>
+</ul>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
+<li><a href="https://www.zhihu.com/question/25002833" target="_blank" rel="noopener">程序员简历应该怎么写？</a></li>
+<li><a href="https://github.com/geekcompany/ResumeSample" target="_blank" rel="noopener">程序员简历模板</a></li>
+<li><a href="https://www.jianshu.com/p/7e68484a7811" target="_blank" rel="noopener">关于程序员生涯的思考，30 岁以后的码农们该何去何从？</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2016/06/your-destiny-is-not-like-a-mule.html" target="_blank" rel="noopener">你的命运不是一头骡子</a></li>
+</ul>
+<p><br></p>
+<blockquote>
+<p>注明：本文转自<a href="https://laravel-china.org/articles/7651/phper-interview-guide-expanded-reading-resources-collation" target="_blank" rel="noopener">Laravel-China</a>、<a href="https://laravel-china.org/users/6487" target="_blank" rel="noopener">無铭</a>。</p>
+</blockquote>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/PHP/" rel="tag"># PHP</a>
+          
+            <a href="/tags/Laravel/" rel="tag"># Laravel</a>
+          
+            <a href="/tags/转载/" rel="tag"># 转载</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/22/PHPer-面试指南-结语：写给程序员的一些建议/" rel="next" title="PHPer 面试指南-结语：写给程序员的一些建议">
+                <i class="fa fa-chevron-left"></i> PHPer 面试指南-结语：写给程序员的一些建议
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/22/PHPer-面试指南-算法篇/" rel="prev" title="PHPer 面试指南-算法篇">
+                PHPer 面试指南-算法篇 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="SOHUCS"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://dn-phphub.qbox.me/uploads/avatars/4549_1464574736.jpeg?imageView2/1/w/200/h/200"
+                alt="David" />
+            
+              <p class="site-author-name" itemprop="name">David</p>
+              <p class="site-description motion-element" itemprop="description">David的博客,PHPER,web开发者,代码搬运工</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives">
+                
+                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/davidzhang12138" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:davidzhang12138@qq.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/1841344844" target="_blank" title="Weibo"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.instagram.com/david_zhang_12138" target="_blank" title="Instagram"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前端篇"><span class="nav-number">1.</span> <span class="nav-text">前端篇</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#后端篇"><span class="nav-number">2.</span> <span class="nav-text">后端篇</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法篇"><span class="nav-number">3.</span> <span class="nav-text">算法篇</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux、Git-篇"><span class="nav-number">4.</span> <span class="nav-text">Linux、Git 篇</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他"><span class="nav-number">5.</span> <span class="nav-text">其他</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">David</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.0.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.4"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytt0Voac';
+      var conf = 'd954ec7f06f2641a99ef1988ef343189';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script>(function(){
+var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?c2819f5e5ed63cd7f04e4737a1a77536":"https://jspassport.ssl.qhimg.com/11.0.1.js?c2819f5e5ed63cd7f04e4737a1a77536";
+document.write('<script src="' + src + '" id="sozz"><\/script>');
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
