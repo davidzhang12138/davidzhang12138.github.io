@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.4" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.0.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  
+  <meta name="keywords" content="Python,转载," />
+
+
+<meta name="description" content="很多网页具有动态加载的功能，简单的静态页面爬虫对它就无能为力了。这时候就需要PhantomJS+Selenium两大神器，再加上Scrapy爬虫框架，就可以拼凑成一个动态爬虫。 PhantomJS简单点说PhantomJS就是一个没有界面的浏览器，提供了JavaScript接口。在Windows平台，下载好PhantomJS后，将phantomjs.exe放到可执行路径里。就可以通过JS与webk">
+<meta name="keywords" content="Python,转载">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Scrapy+PhantomJS+Selenium">
+<meta property="og:url" content="https://david12138.com/2018/02/27/Scrapy-PhantomJS-Selenium/index.html">
+<meta property="og:site_name" content="David的博客">
+<meta property="og:description" content="很多网页具有动态加载的功能，简单的静态页面爬虫对它就无能为力了。这时候就需要PhantomJS+Selenium两大神器，再加上Scrapy爬虫框架，就可以拼凑成一个动态爬虫。 PhantomJS简单点说PhantomJS就是一个没有界面的浏览器，提供了JavaScript接口。在Windows平台，下载好PhantomJS后，将phantomjs.exe放到可执行路径里。就可以通过JS与webk">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://david12138.com/img/18-2-27/Scrapy+PhantomJS+Selenium.png">
+<meta property="og:updated_time" content="2018-02-27T03:35:49.142Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Scrapy+PhantomJS+Selenium">
+<meta name="twitter:description" content="很多网页具有动态加载的功能，简单的静态页面爬虫对它就无能为力了。这时候就需要PhantomJS+Selenium两大神器，再加上Scrapy爬虫框架，就可以拼凑成一个动态爬虫。 PhantomJS简单点说PhantomJS就是一个没有界面的浏览器，提供了JavaScript接口。在Windows平台，下载好PhantomJS后，将phantomjs.exe放到可执行路径里。就可以通过JS与webk">
+<meta name="twitter:image" content="https://david12138.com/img/18-2-27/Scrapy+PhantomJS+Selenium.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://david12138.com/2018/02/27/Scrapy-PhantomJS-Selenium/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+  <title>Scrapy+PhantomJS+Selenium | David的博客</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">David的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-php">
+          <a href="/categories/PHP" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-code"></i> <br />PHP</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-laravel">
+          <a href="/categories/Laravel" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-code"></i> <br />Laravel</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-mysql">
+          <a href="/categories/MYSQL" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-code"></i> <br />MYSQL</a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://david12138.com/2018/02/27/Scrapy-PhantomJS-Selenium/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://dn-phphub.qbox.me/uploads/avatars/4549_1464574736.jpeg?imageView2/1/w/200/h/200">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="David的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Scrapy+PhantomJS+Selenium</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-27T11:03:51+08:00">2018-02-27</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2018/02/27/Scrapy-PhantomJS-Selenium/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2018/02/27/Scrapy-PhantomJS-Selenium/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>很多网页具有动态加载的功能，简单的静态页面爬虫对它就无能为力了。这时候就需要PhantomJS+Selenium两大神器，再加上Scrapy爬虫框架，就可以拼凑成一个动态爬虫。</p>
+<h1 id="PhantomJS"><a href="#PhantomJS" class="headerlink" title="PhantomJS"></a>PhantomJS</h1><p>简单点说PhantomJS就是一个没有界面的浏览器，提供了JavaScript接口。<br>在Windows平台，下载好PhantomJS后，将phantomjs.exe放到可执行路径里。就可以通过JS与webkit内核交互了。<br>一个简单的例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// test.js</span></span><br><span class="line"><span class="keyword">var</span> page = <span class="built_in">require</span>(<span class="string">'webpage'</span>).create(), <span class="comment">//获取操作dom或web网页的对象</span></span><br><span class="line">    system = <span class="built_in">require</span>(<span class="string">'system'</span>),         <span class="comment">//获取操作系统对象</span></span><br><span class="line">    address;</span><br><span class="line"><span class="keyword">if</span> (system.args.length === <span class="number">1</span>) &#123;</span><br><span class="line">    phantom.exit(<span class="number">1</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    address = system.args[<span class="number">1</span>];</span><br><span class="line">    page.open(address, <span class="function"><span class="keyword">function</span> (<span class="params">status</span>) </span>&#123;   <span class="comment">//访问url</span></span><br><span class="line">        <span class="built_in">console</span>.log(page.content);</span><br><span class="line">        phantom.exit();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在cmd中输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">phantomjs ./test.js http://baidu.com</span><br></pre></td></tr></table></figure>
+<p>就会打印出得到的html代码。</p>
+<h3 id="PhantomJS在linux下的安装"><a href="#PhantomJS在linux下的安装" class="headerlink" title="PhantomJS在linux下的安装"></a>PhantomJS在linux下的安装</h3><p>先安装依赖包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install build-essential g++ flex bison gperf ruby perl libsqlite3-dev libfontconfig1-dev libicu-dev libfreetype6 libssl-dev libpng-dev libjpeg-dev python libx11-dev libxext-dev</span><br></pre></td></tr></table></figure>
+<p>下载PhantomJS</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2</span><br></pre></td></tr></table></figure>
+<p>官方链接可能速度很慢, <a href="http://pan.baidu.com/s/1hs5Kx4w" target="_blank" rel="noopener">百度云链接</a>密码：g5b4.<br>解压：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tar -xvjf phantomjs-2.1.1-linux-x86_64.tar.bz2</span><br><span class="line">sudo cp -R phantomjs-2.1.1-linux-x86_64 /usr/local/share/</span><br><span class="line">sudo ln -sf /usr/local/share/phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/local/bin/</span><br></pre></td></tr></table></figure>
+<h1 id="Selenium"><a href="#Selenium" class="headerlink" title="Selenium"></a>Selenium</h1><p>Selenium是一个自动化的测试工具，这里主要用到了它的Webdriver操作浏览器。Selenium可以操作大多数主流浏览器（可能需要相应的驱动），当然也可以操作无界面的浏览器PhantomJS。<br>直接pip安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install selenium</span><br></pre></td></tr></table></figure>
+<p>使用Selenium操作PhantomJS：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"></span><br><span class="line">driver = webdriver.PhantomJS()    <span class="comment"># 获取浏览器对象</span></span><br><span class="line">driver.get(‘http://www.baidu.com/‘)</span><br><span class="line"><span class="keyword">print</span> driver.page_source</span><br></pre></td></tr></table></figure>
+<p>这里的driver.get()方法会等待页面加载完成后才返回，也就是说JS也会加载完毕，有很多ajax的情况除外…<br>Selenium还可以获取节点，填充表单，选择元素等交互操作，这些用到的时候再提。</p>
+<h1 id="Scrapy-Downloader-Middleware"><a href="#Scrapy-Downloader-Middleware" class="headerlink" title="Scrapy - Downloader Middleware"></a>Scrapy - Downloader Middleware</h1><p>Scrapy不再详细介绍，这里主要会用到Downloader Middleware， 下载器中间件。</p>
+<p><img src="/img/18-2-27/Scrapy+PhantomJS+Selenium.png" alt="中间件"><br>下载器中间件在下载器和Scrapy引擎之间，每一个request和response都会通过中间件进行处理。在中间件中，对request进行处理的函数是process_request(request, spider)</p>
+<blockquote>
+<p>process_request() 必须返回其中之一: 返回 None 、返回一个 Response 对象、返回一个 Request 对象或raise IgnoreRequest 。<br>如果其返回 None ，Scrapy将继续处理该request，执行其他的中间件的相应方法，直到合适的下载器处理函数(download handler)被调用， 该request被执行(其response被下载)。<br>如果其返回 Response 对象，Scrapy将不会调用 任何 其他的 process_request() 或 process_exception() 方法，或相应地下载函数； 其将返回该response。 已安装的中间件的 process_response() 方法则会在每个response返回时被调用。<br>如果其返回 Request 对象，Scrapy则停止调用 process_request方法并重新调度返回的request。当新返回的request被执行后， 相应地中间件链将会根据下载的response被调用。</p>
+</blockquote>
+<p>动态爬虫需要中间件处理request，将加载过特定js的页面作为response返回给spider。</p>
+<h1 id="融合"><a href="#融合" class="headerlink" title="融合"></a>融合</h1><p>简单说这三者的关系就是：Scrapy通过Selenium使用PhantomJS，爬取加载过JS的页面。</p>
+<h3 id="spider-py"><a href="#spider-py" class="headerlink" title="spider.py"></a>spider.py</h3><p>在自定义的spider类里，我们要控制何时使用下载器中间件(默认所有请求都会经过中间件)。例如我需要先爬取文章列表页，再获取列表页里的文章页url，再以此爬取文章详情页。<br>在爬取列表页时，不需要经过下载器中间件执行JS，而爬取正文页就需要经过加载过JS的页面。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">mySpider</span><span class="params">(Spider)</span>:</span></span><br><span class="line">    name = <span class="string">'myspider'</span></span><br><span class="line">    start_urls = [....]</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        解析文章列表页</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        urls = response.xpath(<span class="string">'.....'</span>)</span><br><span class="line">        <span class="keyword">for</span> url <span class="keyword">in</span> urls:</span><br><span class="line">            request = Request(url=url, callback=self.parse_post, dont_filter=<span class="keyword">True</span>)</span><br><span class="line">            request.meta[<span class="string">'PhantomJS'</span>] = <span class="keyword">True</span></span><br><span class="line">            <span class="keyword">yield</span> request</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse_post</span><span class="params">(self, response)</span>:</span>  </span><br><span class="line">         <span class="string">"""</span></span><br><span class="line"><span class="string">        解析文章正文页</span></span><br><span class="line"><span class="string">        """</span>    </span><br><span class="line">        item = myItem()</span><br><span class="line">        item[<span class="string">'title'</span>] = response.xpath(<span class="string">'.....'</span>)</span><br></pre></td></tr></table></figure>
+<p>对于每一个爬取详情页的request，我们都加上了一个PhantomJS的meta：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.meta[<span class="string">'PhantomJS'</span>] = <span class="keyword">True</span></span><br></pre></td></tr></table></figure>
+<p>当请求经过下载器中间件时，检查请求中是否有这个meta，决定这个请求要不要使用中间件。</p>
+<h3 id="JSMiddleware-py"><a href="#JSMiddleware-py" class="headerlink" title="JSMiddleware.py"></a>JSMiddleware.py</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PhantomJSMiddleware</span><span class="params">(object)</span>:</span></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_request</span><span class="params">(cls, request, spider)</span>:</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> request.meta.has_key(<span class="string">'PhantomJS'</span>):</span><br><span class="line">            driver = webdriver.PhantomJS() </span><br><span class="line">            driver.get(request.url)</span><br><span class="line">            content = driver.page_source.encode(<span class="string">'utf-8'</span>)</span><br><span class="line">            driver.quit()  </span><br><span class="line">            <span class="keyword">return</span> HtmlResponse(request.url, encoding=<span class="string">'utf-8'</span>, body=content, request=request)</span><br></pre></td></tr></table></figure>
+<p>下载器中间件首先判断请求是否需要经过中间件，然后用PhantomJS打开请求的url，将加载好JS的页面装入HtmlResponse，返回给spider继续处理。<br><em>注意</em>：如果把爬虫添加到定时任务，需要给phantomjs指定可执行文件的路径，因为crontab不会加载用户自定义的环境变量，比如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver = webdriver.PhantomJS(executable_path=<span class="string">'/usr/local/bin/phantomjs'</span>)</span><br></pre></td></tr></table></figure>
+<p>另外还要在<code>setting.py</code>中开启中间件：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DOWNLOADER_MIDDLEWARES = &#123;</span><br><span class="line">    <span class="string">'MySpider.middlewares.JSMiddleware.PhantomJSMiddleware'</span>: <span class="number">100</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="改进"><a href="#改进" class="headerlink" title="改进"></a>改进</h2><p>现在的web页面内容越来越丰富，多数页面都有滚动加载之类的功能，上述爬虫只能运行加载页面完成时的JS，对其他的JS就无力了。<br>比如某网站的文章详情页面中，图片只有在当图片区域出现在屏幕显示区域时，才会加载。对于这种情况，我们需要利用JS代码，模仿浏览器的滚动页面行为。让对应的加载图片的代码运行后，再爬取html。<br>滚动屏幕到底部的JS函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">function scrollToBottom() &#123;</span><br><span class="line"></span><br><span class="line">    var Height = document.body.clientHeight,  //文本高度</span><br><span class="line">        screenHeight = window.innerHeight,  //屏幕高度</span><br><span class="line">        INTERVAL = <span class="number">100</span>,  // 滚动动作之间的间隔时间</span><br><span class="line">        delta = <span class="number">500</span>,  //每次滚动距离</span><br><span class="line">        curScrollTop = <span class="number">0</span>;    //当前window.scrollTop 值</span><br><span class="line"></span><br><span class="line">    var scroll = function () &#123;</span><br><span class="line">        curScrollTop = document.body.scrollTop;</span><br><span class="line">        window.scrollTo(<span class="number">0</span>,curScrollTop + delta);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    var timer = setInterval(function () &#123;</span><br><span class="line">        var curHeight = curScrollTop + screenHeight;</span><br><span class="line">        <span class="keyword">if</span> (curHeight &gt;= Height)&#123;   //滚动到页面底部时，结束滚动</span><br><span class="line">            clearInterval(timer);</span><br><span class="line">        &#125;</span><br><span class="line">        scroll();</span><br><span class="line">    &#125;, INTERVAL)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>将上述代码放入下载器中间件中执行：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">js = <span class="string">"""</span></span><br><span class="line"><span class="string">function scrollToBottom() &#123;</span></span><br><span class="line"><span class="string">    ....</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">scrollToBottom()</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PhantomJSMiddleware</span><span class="params">(object)</span>:</span></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_request</span><span class="params">(cls, request, spider)</span>:</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> request.meta.has_key(<span class="string">'PhantomJS'</span>):</span><br><span class="line">            driver = webdriver.PhantomJS() </span><br><span class="line">            driver.get(request.url)</span><br><span class="line"></span><br><span class="line">            driver.execute_script(js)   </span><br><span class="line">            time.sleep(<span class="number">1</span>)  <span class="comment"># 等待JS执行</span></span><br><span class="line"></span><br><span class="line">            content = driver.page_source.encode(<span class="string">'utf-8'</span>)</span><br><span class="line">            driver.quit()  </span><br><span class="line">            <span class="keyword">return</span> HtmlResponse(request.url, encoding=<span class="string">'utf-8'</span>, body=content, request=request)</span><br></pre></td></tr></table></figure>
+<p>测试时发现，如果等待JS执行的时间过短</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">time.sleep(&lt;wait_time&gt;)</span><br></pre></td></tr></table></figure>
+<p>会导致爬取的页面靠近底部的图片没能加载，因为滚动函数还未执行到此处。所以需要预留一个稍微长一点的等待时间。</p>
+<blockquote>
+<p>注明：本文转自<a href="https://jiayi.space/post/scrapy-phantomjs-seleniumdong-tai-pa-chong" target="_blank" rel="noopener">Melw00d</a>。</p>
+</blockquote>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/转载/" rel="tag"># 转载</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/22/PHPer-面试指南-算法篇/" rel="next" title="PHPer 面试指南-算法篇">
+                <i class="fa fa-chevron-left"></i> PHPer 面试指南-算法篇
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="SOHUCS"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://dn-phphub.qbox.me/uploads/avatars/4549_1464574736.jpeg?imageView2/1/w/200/h/200"
+                alt="David" />
+            
+              <p class="site-author-name" itemprop="name">David</p>
+              <p class="site-description motion-element" itemprop="description">David的博客,PHPER,web开发者,代码搬运工</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives">
+                
+                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/davidzhang12138" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:davidzhang12138@qq.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/1841344844" target="_blank" title="Weibo"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.instagram.com/david_zhang_12138" target="_blank" title="Instagram"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#PhantomJS"><span class="nav-number">1.</span> <span class="nav-text">PhantomJS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PhantomJS在linux下的安装"><span class="nav-number">1.0.1.</span> <span class="nav-text">PhantomJS在linux下的安装</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Selenium"><span class="nav-number">2.</span> <span class="nav-text">Selenium</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Scrapy-Downloader-Middleware"><span class="nav-number">3.</span> <span class="nav-text">Scrapy - Downloader Middleware</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#融合"><span class="nav-number">4.</span> <span class="nav-text">融合</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#spider-py"><span class="nav-number">4.0.1.</span> <span class="nav-text">spider.py</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSMiddleware-py"><span class="nav-number">4.0.2.</span> <span class="nav-text">JSMiddleware.py</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改进"><span class="nav-number">4.1.</span> <span class="nav-text">改进</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">David</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.0.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.4"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytt0Voac';
+      var conf = 'd954ec7f06f2641a99ef1988ef343189';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
