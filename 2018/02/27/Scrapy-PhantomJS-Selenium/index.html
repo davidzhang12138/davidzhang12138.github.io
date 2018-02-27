@@ -100,22 +100,22 @@
 
 
   
-  <meta name="keywords" content="Python,转载," />
+  <meta name="keywords" content="转载,Python," />
 
 
-<meta name="description" content="很多网页具有动态加载的功能，简单的静态页面爬虫对它就无能为力了。这时候就需要PhantomJS+Selenium两大神器，再加上Scrapy爬虫框架，就可以拼凑成一个动态爬虫。 PhantomJS简单点说PhantomJS就是一个没有界面的浏览器，提供了JavaScript接口。在Windows平台，下载好PhantomJS后，将phantomjs.exe放到可执行路径里。就可以通过JS与webk">
-<meta name="keywords" content="Python,转载">
+<meta name="description" content="很多网页具有动态加载的功能，简单的静态页面爬虫对它就无能为力了。这时候就需要PhantomJS+Selenium两大神器，再加上Scrapy爬虫框架，就可以拼凑成一个动态爬虫。">
+<meta name="keywords" content="转载,Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Scrapy+PhantomJS+Selenium">
 <meta property="og:url" content="https://david12138.com/2018/02/27/Scrapy-PhantomJS-Selenium/index.html">
 <meta property="og:site_name" content="David的博客">
-<meta property="og:description" content="很多网页具有动态加载的功能，简单的静态页面爬虫对它就无能为力了。这时候就需要PhantomJS+Selenium两大神器，再加上Scrapy爬虫框架，就可以拼凑成一个动态爬虫。 PhantomJS简单点说PhantomJS就是一个没有界面的浏览器，提供了JavaScript接口。在Windows平台，下载好PhantomJS后，将phantomjs.exe放到可执行路径里。就可以通过JS与webk">
+<meta property="og:description" content="很多网页具有动态加载的功能，简单的静态页面爬虫对它就无能为力了。这时候就需要PhantomJS+Selenium两大神器，再加上Scrapy爬虫框架，就可以拼凑成一个动态爬虫。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://david12138.com/img/18-2-27/Scrapy+PhantomJS+Selenium.png">
-<meta property="og:updated_time" content="2018-02-27T03:35:49.142Z">
+<meta property="og:updated_time" content="2018-02-27T03:36:49.277Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Scrapy+PhantomJS+Selenium">
-<meta name="twitter:description" content="很多网页具有动态加载的功能，简单的静态页面爬虫对它就无能为力了。这时候就需要PhantomJS+Selenium两大神器，再加上Scrapy爬虫框架，就可以拼凑成一个动态爬虫。 PhantomJS简单点说PhantomJS就是一个没有界面的浏览器，提供了JavaScript接口。在Windows平台，下载好PhantomJS后，将phantomjs.exe放到可执行路径里。就可以通过JS与webk">
+<meta name="twitter:description" content="很多网页具有动态加载的功能，简单的静态页面爬虫对它就无能为力了。这时候就需要PhantomJS+Selenium两大神器，再加上Scrapy爬虫框架，就可以拼凑成一个动态爬虫。">
 <meta name="twitter:image" content="https://david12138.com/img/18-2-27/Scrapy+PhantomJS+Selenium.png">
 
 
@@ -375,6 +375,7 @@
 
       
         <p>很多网页具有动态加载的功能，简单的静态页面爬虫对它就无能为力了。这时候就需要PhantomJS+Selenium两大神器，再加上Scrapy爬虫框架，就可以拼凑成一个动态爬虫。</p>
+ <a id="more"></a>
 <h1 id="PhantomJS"><a href="#PhantomJS" class="headerlink" title="PhantomJS"></a>PhantomJS</h1><p>简单点说PhantomJS就是一个没有界面的浏览器，提供了JavaScript接口。<br>在Windows平台，下载好PhantomJS后，将phantomjs.exe放到可执行路径里。就可以通过JS与webkit内核交互了。<br>一个简单的例子：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// test.js</span></span><br><span class="line"><span class="keyword">var</span> page = <span class="built_in">require</span>(<span class="string">'webpage'</span>).create(), <span class="comment">//获取操作dom或web网页的对象</span></span><br><span class="line">    system = <span class="built_in">require</span>(<span class="string">'system'</span>),         <span class="comment">//获取操作系统对象</span></span><br><span class="line">    address;</span><br><span class="line"><span class="keyword">if</span> (system.args.length === <span class="number">1</span>) &#123;</span><br><span class="line">    phantom.exit(<span class="number">1</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    address = system.args[<span class="number">1</span>];</span><br><span class="line">    page.open(address, <span class="function"><span class="keyword">function</span> (<span class="params">status</span>) </span>&#123;   <span class="comment">//访问url</span></span><br><span class="line">        <span class="built_in">console</span>.log(page.content);</span><br><span class="line">        phantom.exit();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在cmd中输入：</p>
@@ -438,9 +439,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Python/" rel="tag"># Python</a>
-          
             <a href="/tags/转载/" rel="tag"># 转载</a>
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
           
         </div>
       
