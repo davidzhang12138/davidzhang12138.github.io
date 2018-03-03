@@ -103,18 +103,18 @@
   <meta name="keywords" content="代码搬运工,David的博客,Vue,Vue学习," />
 
 
-<meta name="description" content="vue如何才能动态给元素添加class? 这是vue官方提供的解决方案：1234&amp;lt;div v-bind:class=&amp;quot;&amp;#123; active: isActive &amp;#125;&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;data: &amp;#123;  isActive: true&amp;#125; 结果渲染为：1&amp;lt;div class=&amp;quot;active&amp;quot;&amp;gt;&amp;lt">
+<meta name="description" content="vue如何才能动态给元素添加class? 这是vue官方提供的解决方案：1234&amp;lt;div v-bind:class=&amp;quot;&amp;#123; active: isActive &amp;#125;&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;data: &amp;#123;  isActive: true&amp;#125;">
 <meta name="keywords" content="代码搬运工,David的博客,Vue,Vue学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vue 动态添加class">
 <meta property="og:url" content="https://david12138.com/2018/03/03/vue-动态添加class/index.html">
 <meta property="og:site_name" content="David的博客">
-<meta property="og:description" content="vue如何才能动态给元素添加class? 这是vue官方提供的解决方案：1234&amp;lt;div v-bind:class=&amp;quot;&amp;#123; active: isActive &amp;#125;&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;data: &amp;#123;  isActive: true&amp;#125; 结果渲染为：1&amp;lt;div class=&amp;quot;active&amp;quot;&amp;gt;&amp;lt">
+<meta property="og:description" content="vue如何才能动态给元素添加class? 这是vue官方提供的解决方案：1234&amp;lt;div v-bind:class=&amp;quot;&amp;#123; active: isActive &amp;#125;&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;data: &amp;#123;  isActive: true&amp;#125;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-03-03T09:01:16.695Z">
+<meta property="og:updated_time" content="2018-03-03T09:03:10.810Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue 动态添加class">
-<meta name="twitter:description" content="vue如何才能动态给元素添加class? 这是vue官方提供的解决方案：1234&amp;lt;div v-bind:class=&amp;quot;&amp;#123; active: isActive &amp;#125;&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;data: &amp;#123;  isActive: true&amp;#125; 结果渲染为：1&amp;lt;div class=&amp;quot;active&amp;quot;&amp;gt;&amp;lt">
+<meta name="twitter:description" content="vue如何才能动态给元素添加class? 这是vue官方提供的解决方案：1234&amp;lt;div v-bind:class=&amp;quot;&amp;#123; active: isActive &amp;#125;&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;data: &amp;#123;  isActive: true&amp;#125;">
 
 
 
@@ -412,6 +412,7 @@
       
         <p>vue如何才能动态给元素添加class?</p>
 <p>这是vue官方提供的解决方案：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div v-bind:class=&quot;&#123; active: isActive &#125;&quot;&gt;&lt;/div&gt;</span><br><span class="line">data: &#123;</span><br><span class="line">  isActive: true</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+ <a id="more"></a>
 <p>结果渲染为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;active&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
 <p>但是这这是最基本的用法 很多场景是更为复杂的<br>比如： 我们需要遍历一个列表 然后动态点击列表添加选中状态 并且之前的选中状态不会消失</p>
 <p>首先生成遍历<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div v-for=&quot;n in 10&quot; v-on:click=&quot;handler(n)&quot; v-bind:class=&quot;&#123; active: isActive[n] &#125;&quot;&gt;&#123;&#123; n &#125;&#125;&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
