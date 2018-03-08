@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[前后端分离 验证码方案]]></title>
+    <url>%2F2018%2F03%2F08%2F%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB-%E9%AA%8C%E8%AF%81%E7%A0%81%E6%96%B9%E6%A1%88%2F</url>
+    <content type="text"><![CDATA[前后分离是目前很多web开发人士所推崇的新的开发方式但是前后分离也会带来一些其他的小问题比如 验证码问题 目前公司后端采用PHP 使用jwt 来进行身份验证由于前后分离的原因 传统验证码方式无法使用 只能通过请求获取验证码而验证码 明文传输回前端就没有意义 所以将验证码 生成的号码生成为 base64的图片将验证码 通过jwt 加密将 jwt 加密后的 验证码明文号码 以及 base64图片同时返回给 前端由前端来进行展示验证码 用户输入验证码 -&gt; 后端解码jwt 判断两个验证码是否相同 PHP生成base64代码:1234567891011ob_start ();//$im是你自己创建的图片资源imagepng ($im);$image_data = ob_get_contents ();ob_end_clean ();//得到这个结果，可以直接用于前端的img标签显示$image_data_base64 = "data:image/png;base64,". base64_encode ($image_data);]]></content>
+      <categories>
+        <category>Vue</category>
+        <category>Javascript</category>
+        <category>PHP</category>
+      </categories>
+      <tags>
+        <tag>PHP</tag>
+        <tag>代码搬运工</tag>
+        <tag>David的博客</tag>
+        <tag>Vue</tag>
+        <tag>Vue学习</tag>
+        <tag>前后分离</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[vue 动态添加class]]></title>
     <url>%2F2018%2F03%2F03%2Fvue-%E5%8A%A8%E6%80%81%E6%B7%BB%E5%8A%A0class%2F</url>
     <content type="text"><![CDATA[vue如何才能动态给元素添加class? 这是vue官方提供的解决方案：1234&lt;div v-bind:class=&quot;&#123; active: isActive &#125;&quot;&gt;&lt;/div&gt;data: &#123; isActive: true&#125; 结果渲染为：1&lt;div class=&quot;active&quot;&gt;&lt;/div&gt; 但是这这是最基本的用法 很多场景是更为复杂的比如： 我们需要遍历一个列表 然后动态点击列表添加选中状态 并且之前的选中状态不会消失 首先生成遍历1&lt;div v-for=&quot;n in 10&quot; v-on:click=&quot;handler(n)&quot; v-bind:class=&quot;&#123; active: isActive[n] &#125;&quot;&gt;&#123;&#123; n &#125;&#125;&lt;/div&gt; 1234567data () &#123; isActive: &#123;&#125;&#125;hanlder(index)&#123; this.$set(this.isActive,index,true) &#125; 直接在方法中 修改data的参数 例如 this.isActive[index] = true 并不会重新绑定class 只能用 this.$set 才可以具体可以参考文档 深入响应式原理]]></content>
@@ -39,8 +57,8 @@
       </categories>
       <tags>
         <tag>PHP</tag>
-        <tag>PHP搬运工</tag>
         <tag>PHP代码</tag>
+        <tag>PHP搬运工</tag>
         <tag>PHP文档</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
@@ -152,8 +170,8 @@
       </categories>
       <tags>
         <tag>PHP</tag>
-        <tag>PHP搬运工</tag>
         <tag>PHP代码</tag>
+        <tag>PHP搬运工</tag>
         <tag>PHP文档</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
@@ -229,8 +247,8 @@
       </categories>
       <tags>
         <tag>PHP</tag>
-        <tag>PHP搬运工</tag>
         <tag>PHP代码</tag>
+        <tag>PHP搬运工</tag>
         <tag>PHP文档</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
@@ -262,8 +280,8 @@
       </categories>
       <tags>
         <tag>PHP</tag>
-        <tag>PHP搬运工</tag>
         <tag>PHP代码</tag>
+        <tag>PHP搬运工</tag>
         <tag>PHP文档</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
@@ -282,8 +300,8 @@
       </categories>
       <tags>
         <tag>PHP</tag>
-        <tag>PHP搬运工</tag>
         <tag>PHP代码</tag>
+        <tag>PHP搬运工</tag>
         <tag>PHP文档</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
@@ -299,8 +317,8 @@
       </categories>
       <tags>
         <tag>PHP</tag>
-        <tag>PHP搬运工</tag>
         <tag>PHP代码</tag>
+        <tag>PHP搬运工</tag>
         <tag>PHP文档</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
@@ -329,8 +347,8 @@
       </categories>
       <tags>
         <tag>PHP</tag>
-        <tag>PHP搬运工</tag>
         <tag>PHP代码</tag>
+        <tag>PHP搬运工</tag>
         <tag>PHP文档</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
@@ -360,8 +378,8 @@
       </categories>
       <tags>
         <tag>PHP</tag>
-        <tag>PHP搬运工</tag>
         <tag>PHP代码</tag>
+        <tag>PHP搬运工</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
         <tag>Laravel</tag>
@@ -378,8 +396,8 @@
       </categories>
       <tags>
         <tag>PHP</tag>
-        <tag>PHP搬运工</tag>
         <tag>PHP代码</tag>
+        <tag>PHP搬运工</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
         <tag>其他</tag>
@@ -394,12 +412,12 @@
       </categories>
       <tags>
         <tag>PHP</tag>
-        <tag>JSON</tag>
-        <tag>PHP搬运工</tag>
         <tag>PHP代码</tag>
+        <tag>PHP搬运工</tag>
         <tag>PHP文档</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
+        <tag>JSON</tag>
       </tags>
   </entry>
 </search>
