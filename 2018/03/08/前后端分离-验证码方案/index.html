@@ -111,7 +111,7 @@
 <meta property="og:site_name" content="David的博客">
 <meta property="og:description" content="前后分离是目前很多web开发人士所推崇的新的开发方式但是前后分离也会带来一些其他的小问题比如 验证码问题">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-03-08T09:53:20.743Z">
+<meta property="og:updated_time" content="2018-03-08T09:54:03.852Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前后端分离 验证码方案">
 <meta name="twitter:description" content="前后分离是目前很多web开发人士所推崇的新的开发方式但是前后分离也会带来一些其他的小问题比如 验证码问题">
@@ -418,7 +418,7 @@
 
       
         <p>前后分离是目前很多web开发人士所推崇的新的开发方式<br>但是前后分离也会带来一些其他的小问题<br>比如 <em>验证码问题</em><br> <a id="more"></a></p>
-<p>目前公司后端采用PHP 使用jwt 来进行身份验证<br>由于前后分离的原因 传统验证码方式无法使用 只能通过请求获取验证码<br>而验证码 明文传输回前端就没有意义 所以将验证码 生成的号码生成为 base64的图片<br>将验证码 通过jwt 加密<br>将 jwt 加密后的 验证码明文号码 以及 base64图片同时返回给 前端<br>由前端来进行展示验证码 </p>
+<p>后端语言采用PHP 使用jwt 来进行身份验证<br>由于前后分离的原因 传统验证码方式无法使用 只能通过请求获取验证码<br>而验证码 明文传输回前端就没有意义 所以将验证码 生成的号码生成为 base64的图片<br>将验证码 通过jwt 加密<br>将 jwt 加密后的 验证码明文号码 以及 base64图片同时返回给 前端<br>由前端来进行展示验证码 </p>
 <p>用户输入验证码 -&gt; 后端解码jwt 判断两个验证码是否相同</p>
 <p>PHP生成base64代码:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ob_start ();</span><br><span class="line"></span><br><span class="line"><span class="comment">//$im是你自己创建的图片资源</span></span><br><span class="line">imagepng ($im);</span><br><span class="line"></span><br><span class="line">$image_data = ob_get_contents ();</span><br><span class="line"></span><br><span class="line">ob_end_clean ();</span><br><span class="line"></span><br><span class="line"><span class="comment">//得到这个结果，可以直接用于前端的img标签显示</span></span><br><span class="line">$image_data_base64 = <span class="string">"data:image/png;base64,"</span>. base64_encode ($image_data);</span><br></pre></td></tr></table></figure></p>
 

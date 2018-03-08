@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[前后端分离 验证码方案]]></title>
     <url>%2F2018%2F03%2F08%2F%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB-%E9%AA%8C%E8%AF%81%E7%A0%81%E6%96%B9%E6%A1%88%2F</url>
-    <content type="text"><![CDATA[前后分离是目前很多web开发人士所推崇的新的开发方式但是前后分离也会带来一些其他的小问题比如 验证码问题 目前公司后端采用PHP 使用jwt 来进行身份验证由于前后分离的原因 传统验证码方式无法使用 只能通过请求获取验证码而验证码 明文传输回前端就没有意义 所以将验证码 生成的号码生成为 base64的图片将验证码 通过jwt 加密将 jwt 加密后的 验证码明文号码 以及 base64图片同时返回给 前端由前端来进行展示验证码 用户输入验证码 -&gt; 后端解码jwt 判断两个验证码是否相同 PHP生成base64代码:1234567891011ob_start ();//$im是你自己创建的图片资源imagepng ($im);$image_data = ob_get_contents ();ob_end_clean ();//得到这个结果，可以直接用于前端的img标签显示$image_data_base64 = "data:image/png;base64,". base64_encode ($image_data);]]></content>
+    <content type="text"><![CDATA[前后分离是目前很多web开发人士所推崇的新的开发方式但是前后分离也会带来一些其他的小问题比如 验证码问题 后端语言采用PHP 使用jwt 来进行身份验证由于前后分离的原因 传统验证码方式无法使用 只能通过请求获取验证码而验证码 明文传输回前端就没有意义 所以将验证码 生成的号码生成为 base64的图片将验证码 通过jwt 加密将 jwt 加密后的 验证码明文号码 以及 base64图片同时返回给 前端由前端来进行展示验证码 用户输入验证码 -&gt; 后端解码jwt 判断两个验证码是否相同 PHP生成base64代码:1234567891011ob_start ();//$im是你自己创建的图片资源imagepng ($im);$image_data = ob_get_contents ();ob_end_clean ();//得到这个结果，可以直接用于前端的img标签显示$image_data_base64 = "data:image/png;base64,". base64_encode ($image_data);]]></content>
       <categories>
         <category>Vue</category>
         <category>Javascript</category>
@@ -57,8 +57,8 @@
       </categories>
       <tags>
         <tag>PHP</tag>
-        <tag>PHP代码</tag>
         <tag>PHP搬运工</tag>
+        <tag>PHP代码</tag>
         <tag>PHP文档</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
@@ -170,8 +170,8 @@
       </categories>
       <tags>
         <tag>PHP</tag>
-        <tag>PHP代码</tag>
         <tag>PHP搬运工</tag>
+        <tag>PHP代码</tag>
         <tag>PHP文档</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
@@ -247,8 +247,8 @@
       </categories>
       <tags>
         <tag>PHP</tag>
-        <tag>PHP代码</tag>
         <tag>PHP搬运工</tag>
+        <tag>PHP代码</tag>
         <tag>PHP文档</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
@@ -280,8 +280,8 @@
       </categories>
       <tags>
         <tag>PHP</tag>
-        <tag>PHP代码</tag>
         <tag>PHP搬运工</tag>
+        <tag>PHP代码</tag>
         <tag>PHP文档</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
@@ -300,8 +300,8 @@
       </categories>
       <tags>
         <tag>PHP</tag>
-        <tag>PHP代码</tag>
         <tag>PHP搬运工</tag>
+        <tag>PHP代码</tag>
         <tag>PHP文档</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
@@ -317,8 +317,8 @@
       </categories>
       <tags>
         <tag>PHP</tag>
-        <tag>PHP代码</tag>
         <tag>PHP搬运工</tag>
+        <tag>PHP代码</tag>
         <tag>PHP文档</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
@@ -347,8 +347,8 @@
       </categories>
       <tags>
         <tag>PHP</tag>
-        <tag>PHP代码</tag>
         <tag>PHP搬运工</tag>
+        <tag>PHP代码</tag>
         <tag>PHP文档</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
@@ -378,8 +378,8 @@
       </categories>
       <tags>
         <tag>PHP</tag>
-        <tag>PHP代码</tag>
         <tag>PHP搬运工</tag>
+        <tag>PHP代码</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
         <tag>Laravel</tag>
@@ -396,8 +396,8 @@
       </categories>
       <tags>
         <tag>PHP</tag>
-        <tag>PHP代码</tag>
         <tag>PHP搬运工</tag>
+        <tag>PHP代码</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
         <tag>其他</tag>
@@ -412,12 +412,12 @@
       </categories>
       <tags>
         <tag>PHP</tag>
-        <tag>PHP代码</tag>
+        <tag>JSON</tag>
         <tag>PHP搬运工</tag>
+        <tag>PHP代码</tag>
         <tag>PHP文档</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
-        <tag>JSON</tag>
       </tags>
   </entry>
 </search>
