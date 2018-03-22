@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[rimraf包是什么]]></title>
     <url>%2F2018%2F03%2F22%2Frimraf%E5%8C%85%E6%98%AF%E4%BB%80%E4%B9%88%2F</url>
-    <content type="text"><![CDATA[rimraf包是什么含义：rimraf 包的作用：以包的形式包装rm -rf命令，用来删除文件和文件夹的，不管文件夹是否为空，都可删除 安装：npm install rimraf --save-dev --save 保存至 package.json 文件 -dev 开发环境加载 使用1234const rimraf = require('rimraf');rimraf('./test.txt', function (err) &#123; // 删除当前目录下的 test.txt console.log(err);&#125;);]]></content>
+    <content type="text"><![CDATA[rimraf包是什么含义：在production 环境中可能在每次build 的时候想把dist目录下的所有旧的文件全部删掉，因为每次build的时候都会再生成相对应的file，可以使用rimraf命令rimraf包装rm -rf命令，用来删除文件和文件夹 安装：npm install rimraf --save-dev --save 保存至 package.json 文件 -dev 开发环境加载 使用在scripts对象中添加一个新的clean 命12345"scripts": &#123; "dev": "webpack-dev-server", "prot": "npm run clean &amp;&amp; webpack -p", "clean":"rimraf ./dist/*" &#125;,]]></content>
       <categories>
         <category>Vue</category>
         <category>Javascript</category>
@@ -25,9 +25,9 @@
         <category>PHP</category>
       </categories>
       <tags>
+        <tag>PHP</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
-        <tag>PHP</tag>
         <tag>Vue</tag>
         <tag>Vue学习</tag>
         <tag>前后分离</tag>
@@ -71,13 +71,13 @@
         <category>PHP</category>
       </categories>
       <tags>
+        <tag>PHP</tag>
+        <tag>PHP搬运工</tag>
+        <tag>PHP代码</tag>
+        <tag>PHP文档</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
-        <tag>PHP</tag>
         <tag>Laravel</tag>
-        <tag>PHP代码</tag>
-        <tag>PHP搬运工</tag>
-        <tag>PHP文档</tag>
       </tags>
   </entry>
   <entry>
@@ -89,9 +89,9 @@
         <category>PHP</category>
       </categories>
       <tags>
+        <tag>PHP</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
-        <tag>PHP</tag>
         <tag>Laravel</tag>
       </tags>
   </entry>
@@ -104,9 +104,9 @@
         <category>PHP</category>
       </categories>
       <tags>
+        <tag>PHP</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
-        <tag>PHP</tag>
         <tag>Laravel</tag>
       </tags>
   </entry>
@@ -119,9 +119,9 @@
         <category>PHP</category>
       </categories>
       <tags>
+        <tag>PHP</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
-        <tag>PHP</tag>
         <tag>Laravel</tag>
       </tags>
   </entry>
@@ -134,9 +134,9 @@
         <category>PHP</category>
       </categories>
       <tags>
+        <tag>PHP</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
-        <tag>PHP</tag>
         <tag>Laravel</tag>
         <tag>转载</tag>
       </tags>
@@ -150,10 +150,10 @@
         <category>PHP</category>
       </categories>
       <tags>
+        <tag>PHP</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
         <tag>Mysql学习</tag>
-        <tag>PHP</tag>
         <tag>Laravel</tag>
         <tag>Mysql</tag>
       </tags>
@@ -167,9 +167,9 @@
         <category>PHP</category>
       </categories>
       <tags>
+        <tag>PHP</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
-        <tag>PHP</tag>
         <tag>Laravel</tag>
         <tag>Laravel文档</tag>
         <tag>Laravel学习</tag>
@@ -184,13 +184,13 @@
         <category>PHP</category>
       </categories>
       <tags>
+        <tag>PHP</tag>
+        <tag>PHP搬运工</tag>
+        <tag>PHP代码</tag>
+        <tag>PHP文档</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
-        <tag>PHP</tag>
         <tag>Laravel</tag>
-        <tag>PHP代码</tag>
-        <tag>PHP搬运工</tag>
-        <tag>PHP文档</tag>
       </tags>
   </entry>
   <entry>
@@ -202,9 +202,9 @@
         <category>PHP</category>
       </categories>
       <tags>
+        <tag>PHP</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
-        <tag>PHP</tag>
         <tag>Laravel</tag>
       </tags>
   </entry>
@@ -217,9 +217,9 @@
         <category>PHP</category>
       </categories>
       <tags>
+        <tag>PHP</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
-        <tag>PHP</tag>
         <tag>Laravel</tag>
       </tags>
   </entry>
@@ -231,9 +231,9 @@
         <category>MYSQL</category>
       </categories>
       <tags>
-        <tag>MYSQL</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
+        <tag>MYSQL</tag>
         <tag>Mysql学习</tag>
         <tag>Mysql文档</tag>
       </tags>
@@ -247,9 +247,9 @@
         <category>LNMP</category>
       </categories>
       <tags>
-        <tag>MYSQL</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
+        <tag>MYSQL</tag>
         <tag>LNMP</tag>
       </tags>
   </entry>
@@ -261,15 +261,15 @@
         <category>PHP</category>
       </categories>
       <tags>
+        <tag>PHP</tag>
+        <tag>PHP搬运工</tag>
+        <tag>PHP代码</tag>
+        <tag>PHP文档</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
-        <tag>PHP</tag>
         <tag>Laravel</tag>
-        <tag>PHP代码</tag>
-        <tag>PHP搬运工</tag>
         <tag>Laravel文档</tag>
         <tag>Laravel学习</tag>
-        <tag>PHP文档</tag>
       </tags>
   </entry>
   <entry>
@@ -294,15 +294,15 @@
         <category>PHP</category>
       </categories>
       <tags>
+        <tag>PHP</tag>
+        <tag>PHP搬运工</tag>
+        <tag>PHP代码</tag>
+        <tag>PHP文档</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
-        <tag>PHP</tag>
         <tag>Laravel</tag>
-        <tag>PHP代码</tag>
-        <tag>PHP搬运工</tag>
         <tag>Laravel文档</tag>
         <tag>Laravel学习</tag>
-        <tag>PHP文档</tag>
         <tag>转载</tag>
       </tags>
   </entry>
@@ -314,12 +314,12 @@
         <category>PHP</category>
       </categories>
       <tags>
+        <tag>PHP</tag>
+        <tag>PHP搬运工</tag>
+        <tag>PHP代码</tag>
+        <tag>PHP文档</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
-        <tag>PHP</tag>
-        <tag>PHP代码</tag>
-        <tag>PHP搬运工</tag>
-        <tag>PHP文档</tag>
       </tags>
   </entry>
   <entry>
@@ -331,13 +331,13 @@
         <category>PHP</category>
       </categories>
       <tags>
+        <tag>PHP</tag>
+        <tag>PHP搬运工</tag>
+        <tag>PHP代码</tag>
+        <tag>PHP文档</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
-        <tag>PHP</tag>
         <tag>Laravel</tag>
-        <tag>PHP代码</tag>
-        <tag>PHP搬运工</tag>
-        <tag>PHP文档</tag>
       </tags>
   </entry>
   <entry>
@@ -361,12 +361,12 @@
         <category>PHP</category>
       </categories>
       <tags>
+        <tag>PHP</tag>
+        <tag>PHP搬运工</tag>
+        <tag>PHP代码</tag>
+        <tag>PHP文档</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
-        <tag>PHP</tag>
-        <tag>PHP代码</tag>
-        <tag>PHP搬运工</tag>
-        <tag>PHP文档</tag>
       </tags>
   </entry>
   <entry>
@@ -377,9 +377,9 @@
         <category>MYSQL</category>
       </categories>
       <tags>
-        <tag>MYSQL</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
+        <tag>MYSQL</tag>
         <tag>Mysql学习</tag>
         <tag>Mysql文档</tag>
       </tags>
@@ -392,12 +392,12 @@
         <category>PHP</category>
       </categories>
       <tags>
+        <tag>PHP</tag>
+        <tag>PHP搬运工</tag>
+        <tag>PHP代码</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
-        <tag>PHP</tag>
         <tag>Laravel</tag>
-        <tag>PHP代码</tag>
-        <tag>PHP搬运工</tag>
         <tag>Laravel文档</tag>
         <tag>Laravel学习</tag>
       </tags>
@@ -410,11 +410,11 @@
         <category>PHP</category>
       </categories>
       <tags>
+        <tag>PHP</tag>
+        <tag>PHP搬运工</tag>
+        <tag>PHP代码</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
-        <tag>PHP</tag>
-        <tag>PHP代码</tag>
-        <tag>PHP搬运工</tag>
         <tag>其他</tag>
       </tags>
   </entry>
@@ -426,13 +426,13 @@
         <category>PHP</category>
       </categories>
       <tags>
+        <tag>PHP</tag>
+        <tag>JSON</tag>
+        <tag>PHP搬运工</tag>
+        <tag>PHP代码</tag>
+        <tag>PHP文档</tag>
         <tag>代码搬运工</tag>
         <tag>David的博客</tag>
-        <tag>PHP</tag>
-        <tag>PHP代码</tag>
-        <tag>PHP搬运工</tag>
-        <tag>JSON</tag>
-        <tag>PHP文档</tag>
       </tags>
   </entry>
 </search>

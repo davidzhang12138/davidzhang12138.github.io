@@ -103,18 +103,18 @@
   <meta name="keywords" content="代码搬运工,David的博客,Vue,Vue-SSR," />
 
 
-<meta name="description" content="rimraf包是什么含义：rimraf 包的作用：以包的形式包装rm -rf命令，用来删除文件和文件夹的，不管文件夹是否为空，都可删除">
+<meta name="description" content="rimraf包是什么含义：在production 环境中可能在每次build 的时候想把dist目录下的所有旧的文件全部删掉，因为每次build的时候都会再生成相对应的file，可以使用rimraf命令rimraf包装rm -rf命令，用来删除文件和文件夹">
 <meta name="keywords" content="代码搬运工,David的博客,Vue,Vue-SSR">
 <meta property="og:type" content="article">
 <meta property="og:title" content="rimraf包是什么">
 <meta property="og:url" content="https://david12138.com/2018/03/22/rimraf包是什么/index.html">
 <meta property="og:site_name" content="David的博客">
-<meta property="og:description" content="rimraf包是什么含义：rimraf 包的作用：以包的形式包装rm -rf命令，用来删除文件和文件夹的，不管文件夹是否为空，都可删除">
+<meta property="og:description" content="rimraf包是什么含义：在production 环境中可能在每次build 的时候想把dist目录下的所有旧的文件全部删掉，因为每次build的时候都会再生成相对应的file，可以使用rimraf命令rimraf包装rm -rf命令，用来删除文件和文件夹">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-03-22T01:54:36.360Z">
+<meta property="og:updated_time" content="2018-03-22T01:58:05.255Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="rimraf包是什么">
-<meta name="twitter:description" content="rimraf包是什么含义：rimraf 包的作用：以包的形式包装rm -rf命令，用来删除文件和文件夹的，不管文件夹是否为空，都可删除">
+<meta name="twitter:description" content="rimraf包是什么含义：在production 环境中可能在每次build 的时候想把dist目录下的所有旧的文件全部删掉，因为每次build的时候都会再生成相对应的file，可以使用rimraf命令rimraf包装rm -rf命令，用来删除文件和文件夹">
 
 
 
@@ -410,9 +410,10 @@
       
 
       
-        <h1 id="rimraf包是什么"><a href="#rimraf包是什么" class="headerlink" title="rimraf包是什么"></a>rimraf包是什么</h1><h2 id="含义："><a href="#含义：" class="headerlink" title="含义："></a>含义：</h2><p>rimraf 包的作用：以包的形式包装rm -rf命令，用来删除文件和文件夹的，不管文件夹是否为空，都可删除<br> <a id="more"></a></p>
+        <h1 id="rimraf包是什么"><a href="#rimraf包是什么" class="headerlink" title="rimraf包是什么"></a>rimraf包是什么</h1><h2 id="含义："><a href="#含义：" class="headerlink" title="含义："></a>含义：</h2><p>在production 环境中可能在每次build 的时候想把dist目录下的所有旧的文件全部删掉，因为每次build的时候都会再生成相对应的file，可以使用rimraf命令<br>rimraf包装rm -rf命令，用来删除文件和文件夹<br> <a id="more"></a></p>
 <h2 id="安装："><a href="#安装：" class="headerlink" title="安装："></a>安装：</h2><p><code>npm install rimraf --save-dev</code> <code>--save</code> 保存至 package.json 文件 <code>-dev</code> 开发环境加载</p>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> rimraf = <span class="built_in">require</span>(<span class="string">'rimraf'</span>);</span><br><span class="line">rimraf(<span class="string">'./test.txt'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123; <span class="comment">// 删除当前目录下的 test.txt</span></span><br><span class="line">  <span class="built_in">console</span>.log(err);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>在scripts对象中添加一个新的clean 命<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">"scripts": &#123;</span><br><span class="line">   "dev": "webpack-dev-server",</span><br><span class="line">   "prot": "npm run clean &amp;&amp; webpack -p",</span><br><span class="line">   "clean":"rimraf ./dist/*"</span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure></p>
+
       
     </div>
 
